@@ -162,7 +162,7 @@ menu_icons = {
 
 <div class="menu-container">
     <div class="menu-nav">
-        <a href="/" class="logo"><i class='fa-solid fa-globe'></i>&nbsp;Global Stocks</a>
+        <a href="/" target="_self" class="logo"><i class='fa-solid fa-globe'></i>&nbsp;Global Stocks</a>
         <input type="checkbox" id="menu-toggle" style="display:none;" />
         <label class="menu-hamburger" for="menu-toggle">
             <span></span>
@@ -170,11 +170,11 @@ menu_icons = {
             <span></span>
         </label>
         <div class="menu-items">
-            <a href="/" class="menu-item">{menu_icons['home']}หน้าหลัก</a>
-            <a href="/1_Basics_of_Investment" class="menu-item">{menu_icons['basics']}พื้นฐานการลงทุน</a>
-            <a href="/2_Stock_Data_Analysis" class="menu-item">{menu_icons['analysis']}วิเคราะห์หุ้น</a>
-            <a href="/3_Forex_and_Risk" class="menu-item">{menu_icons['forex']}ความเสี่ยง</a>
-            <a href="/4_About_and_Tips" class="menu-item active">{menu_icons['tips']}เคล็ดลับ</a>
+            <a href="/" target="_self" class="menu-item">{menu_icons['home']}หน้าหลัก</a>
+            <a href="/1_Basics_of_Investment" target="_self" class="menu-item">{menu_icons['basics']}พื้นฐานการลงทุน</a>
+            <a href="/2_Stock_Data_Analysis" target="_self" class="menu-item">{menu_icons['analysis']}วิเคราะห์หุ้น</a>
+            <a href="/3_Forex_and_Risk" target="_self" class="menu-item">{menu_icons['forex']}ความเสี่ยง</a>
+            <a href="/4_About_and_Tips" target="_self" class="menu-item active">{menu_icons['tips']}เคล็ดลับ</a>
         </div>
     </div>
 
