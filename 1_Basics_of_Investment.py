@@ -42,7 +42,7 @@ with col1:
 
 with col3:
     if st.button("ถัดไป: วิเคราะห์ข้อมูล 📊", use_container_width=True):
-        st.switch_page("pages/2_Stock_Data_Analysis.py")
+        st.switch_page("2_Stock_Data_Analysis.py")
 
 st.markdown("""
 ### 🎯 พร้อมแล้ว? ไปต่อกันเลย!

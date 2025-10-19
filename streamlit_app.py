@@ -40,18 +40,18 @@ col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     if st.button("📘 เริ่มจากพื้นฐาน", use_container_width=True):
-        st.switch_page("1_Basics_of_Investment.py")
+        st.switch_page("pages/1_Basics_of_Investment.py")
 
 with col2:
-    if st.button("� วิเคราะห์หุ้น", use_container_width=True):
-        st.switch_page("2_Stock_Data_Analysis.py")
+    if st.button("📊 วิเคราะห์หุ้น", use_container_width=True):
+        st.switch_page("pages/2_Stock_Data_Analysis.py")
 
 with col3:
     if st.button("💱 ความเสี่ยง", use_container_width=True):
-        st.switch_page("3_Forex_and_Risk.py")
+        st.switch_page("pages/3_Forex_and_Risk.py")
 
 with col4:
     if st.button("💡 เคล็ดลับ", use_container_width=True):
-        st.switch_page("4_About_and_Tips.py")
+        st.switch_page("pages/4_About_and_Tips.py")
 
 st.info("�👈 หรือใช้เมนูด้านซ้ายเพื่อเลือกหัวข้อการเรียนรู้")

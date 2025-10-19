@@ -46,7 +46,7 @@ col1, col2, col3 = st.columns([1, 2, 1])
 
 with col1:
     if st.button("← ก่อนหน้า: ความเสี่ยง", use_container_width=True):
-        st.switch_page("pages/3_Forex_and_Risk.py")
+        st.switch_page("3_Forex_and_Risk.py")
 
 with col2:
     if st.button("🏠 กลับหน้าหลัก", use_container_width=True):
@@ -54,7 +54,7 @@ with col2:
 
 with col3:
     if st.button("🔄 เริ่มใหม่", use_container_width=True):
-        st.switch_page("pages/1_Basics_of_Investment.py")
+        st.switch_page("1_Basics_of_Investment.py")
 
 st.markdown("""
 ---
