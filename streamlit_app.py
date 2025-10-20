@@ -126,6 +126,11 @@ st.markdown("""
 
     <!-- Slide 2: Analysis Tools -->
     <div class="slide slide-2">
+        <div class="slide-controls">
+            <button class="control-btn" onclick="toggleAutoPlay()">
+                <i class="fa-solid fa-pause"></i> <span id="play-text-2">Pause</span>
+            </button>
+        </div>
         <div class="slide-content">
             <div class="slide-icon">📊</div>
             <h2>เครื่องมือวิเคราะห์ที่ทรงพลัง</h2>
@@ -149,6 +154,11 @@ st.markdown("""
 
     <!-- Slide 3: Global Markets -->
     <div class="slide slide-3">
+        <div class="slide-controls">
+            <button class="control-btn" onclick="toggleAutoPlay()">
+                <i class="fa-solid fa-pause"></i> <span id="play-text-3">Pause</span>
+            </button>
+        </div>
         <div class="slide-content">
             <div class="slide-icon">🌍</div>
             <h2>เข้าถึงตลาดโลก</h2>
@@ -172,6 +182,11 @@ st.markdown("""
 
     <!-- Slide 4: Risk Management -->
     <div class="slide slide-4">
+        <div class="slide-controls">
+            <button class="control-btn" onclick="toggleAutoPlay()">
+                <i class="fa-solid fa-pause"></i> <span id="play-text-4">Pause</span>
+            </button>
+        </div>
         <div class="slide-content">
             <div class="slide-icon">🛡️</div>
             <h2>บริหารความเสี่ยงอย่างมืออาชีพ</h2>
@@ -195,6 +210,11 @@ st.markdown("""
 
     <!-- Slide 5: Learn & Grow -->
     <div class="slide slide-5">
+        <div class="slide-controls">
+            <button class="control-btn" onclick="toggleAutoPlay()">
+                <i class="fa-solid fa-pause"></i> <span id="play-text-5">Pause</span>
+            </button>
+        </div>
         <div class="slide-content">
             <div class="slide-icon">🚀</div>
             <h2>เรียนรู้และเติบโตไปด้วยกัน</h2>
@@ -351,19 +371,35 @@ function resetProgress() {
 
 function toggleAutoPlay() {
     const playText = document.getElementById('play-text');
-    const btn = document.querySelector('.control-btn i');
+    const playText2 = document.getElementById('play-text-2');
+    const playText3 = document.getElementById('play-text-3');
+    const playText4 = document.getElementById('play-text-4');
+    const playText5 = document.getElementById('play-text-5');
+    const btns = document.querySelectorAll('.control-btn i');
     
     if (isAutoPlaying) {
         clearInterval(autoPlayInterval);
         clearInterval(progressInterval);
         isAutoPlaying = false;
-        playText.textContent = 'Play';
-        btn.className = 'fa-solid fa-play';
+        
+        // Update all buttons
+        [playText, playText2, playText3, playText4, playText5].forEach(el => {
+            if (el) el.textContent = 'Play';
+        });
+        btns.forEach(btn => {
+            btn.className = 'fa-solid fa-play';
+        });
     } else {
         startAutoPlay();
         isAutoPlaying = true;
-        playText.textContent = 'Pause';
-        btn.className = 'fa-solid fa-pause';
+        
+        // Update all buttons
+        [playText, playText2, playText3, playText4, playText5].forEach(el => {
+            if (el) el.textContent = 'Pause';
+        });
+        btns.forEach(btn => {
+            btn.className = 'fa-solid fa-pause';
+        });
     }
 }
 
