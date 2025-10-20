@@ -1,5 +1,18 @@
 import streamlit as st
 import datetime
+import requests
+import sys
+import os
+
+# เพิ่ม path สำหรับ import config
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from config import ALPHA_VANTAGE_API_KEY, ALPHA_VANTAGE_BASE_URL
+
+try:
+    import yfinance as yf
+    YFINANCE_AVAILABLE = True
+except ImportError:
+    YFINANCE_AVAILABLE = False
 
 # Add FontAwesome CDN (ต้องอยู่ก่อนเมนูบาร์เสมอ)
 st.markdown("""
@@ -227,20 +240,157 @@ with col3:
 st.markdown("---")
 st.markdown("<h2><i class='fa-solid fa-chart-line'></i> สถานการณ์ตลาดวันนี้</h2>", unsafe_allow_html=True)
 
-# Market info cards
-col1, col2, col3, col4 = st.columns(4)
-current_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+# Fetch real market data
+@st.cache_data(ttl=300)  # Cache for 5 minutes
+def get_market_data():
+    """ดึงข้อมูลตลาดจริงจาก yfinance"""
+    market_indices = {
+        "S&P 500": "^GSPC",
+        "NASDAQ": "^IXIC",
+        "Dow Jones": "^DJI",
+        "Nikkei 225": "^N225"
+    }
+    
+    market_data = {}
+    
+    if YFINANCE_AVAILABLE:
+        try:
+            for name, symbol in market_indices.items():
+                ticker = yf.Ticker(symbol)
+                hist = ticker.history(period="2d")
+                
+                if len(hist) >= 2:
+                    current_price = hist['Close'].iloc[-1]
+                    prev_price = hist['Close'].iloc[-2]
+                    change = current_price - prev_price
+                    change_pct = (change / prev_price) * 100
+                    
+                    market_data[name] = {
+                        "price": f"{current_price:,.2f}",
+                        "change": f"{change:+.2f}",
+                        "change_pct": f"{change_pct:+.2f}%"
+                    }
+                else:
+                    # ถ้าไม่มีข้อมูลเพียงพอ
+                    market_data[name] = {
+                        "price": "N/A",
+                        "change": "0.00",
+                        "change_pct": "0.00%"
+                    }
+        except Exception as e:
+            st.error(f"เกิดข้อผิดพลาดในการดึงข้อมูล: {str(e)}")
+            return None
+    else:
+        # ถ้าไม่มี yfinance ใช้ข้อมูลจำลอง
+        market_data = {
+            "S&P 500": {"price": "4,500.25", "change": "+12.50", "change_pct": "+0.28%"},
+            "NASDAQ": {"price": "14,200.30", "change": "-25.80", "change_pct": "-0.18%"},
+            "Dow Jones": {"price": "35,100.45", "change": "+85.30", "change_pct": "+0.24%"},
+            "Nikkei 225": {"price": "33,750.89", "change": "+180.20", "change_pct": "+0.54%"}
+        }
+    
+    return market_data
 
-with col1:
-    st.metric("S&P 500", "4,500.25", "12.5 (0.28%)")
-with col2:
-    st.metric("NASDAQ", "14,200.30", "-25.8 (-0.18%)")
-with col3:
-    st.metric("Nikkei 225", "33,750.89", "180.2 (0.54%)")
-with col4:
-    st.metric("FTSE 100", "7,620.45", "-15.3 (-0.20%)")
+# Display market data
+market_data = get_market_data()
 
-st.caption(f"ข้อมูล ณ วันที่: {current_date} (จำลอง)")
+if market_data:
+    col1, col2, col3, col4 = st.columns(4)
+    current_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    
+    cols = [col1, col2, col3, col4]
+    for i, (name, data) in enumerate(market_data.items()):
+        with cols[i]:
+            # แยก change และ change_pct
+            change_value = data["change"].replace("+", "")
+            st.metric(name, data["price"], f"{data['change']} ({data['change_pct']})")
+    
+    if YFINANCE_AVAILABLE:
+        st.caption(f"📊 ข้อมูลจริงจาก Yahoo Finance | อัพเดท: {current_date}")
+    else:
+        st.caption(f"⚠️ ข้อมูลจำลอง (ติดตั้ง yfinance เพื่อดูข้อมูลจริง) | {current_date}")
+        st.info("💡 รันคำสั่ง: `pip install yfinance` เพื่อดูข้อมูลตลาดแบบเรียลไทม์")
+else:
+    st.warning("ไม่สามารถดึงข้อมูลตลาดได้ในขณะนี้")
+
+# Popular Stocks Section
+st.markdown("---")
+st.markdown("<h2><i class='fa-solid fa-fire'></i> หุ้นยอดนิยม</h2>", unsafe_allow_html=True)
+
+@st.cache_data(ttl=300)  # Cache for 5 minutes
+def get_popular_stocks():
+    """ดึงข้อมูลหุ้นยอดนิยม"""
+    popular_symbols = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "NVDA", "META", "JPM"]
+    stocks_data = []
+    
+    if YFINANCE_AVAILABLE:
+        try:
+            for symbol in popular_symbols:
+                ticker = yf.Ticker(symbol)
+                info = ticker.info
+                hist = ticker.history(period="1d")
+                
+                if not hist.empty:
+                    current_price = hist['Close'].iloc[-1]
+                    # ดึง previous close จาก info
+                    prev_close = info.get('previousClose', current_price)
+                    change = current_price - prev_close
+                    change_pct = (change / prev_close) * 100 if prev_close != 0 else 0
+                    
+                    stocks_data.append({
+                        "symbol": symbol,
+                        "name": info.get('shortName', symbol),
+                        "price": current_price,
+                        "change": change,
+                        "change_pct": change_pct
+                    })
+        except Exception as e:
+            st.error(f"เกิดข้อผิดพลาดในการดึงข้อมูลหุ้น: {str(e)}")
+            return None
+    else:
+        # ข้อมูลจำลอง
+        stocks_data = [
+            {"symbol": "AAPL", "name": "Apple Inc.", "price": 178.50, "change": 2.30, "change_pct": 1.31},
+            {"symbol": "MSFT", "name": "Microsoft Corp", "price": 412.30, "change": -1.50, "change_pct": -0.36},
+            {"symbol": "GOOGL", "name": "Alphabet Inc", "price": 142.80, "change": 3.20, "change_pct": 2.29},
+            {"symbol": "AMZN", "name": "Amazon.com Inc", "price": 178.25, "change": 1.75, "change_pct": 0.99},
+            {"symbol": "TSLA", "name": "Tesla Inc", "price": 242.80, "change": -4.50, "change_pct": -1.82},
+            {"symbol": "NVDA", "name": "NVIDIA Corp", "price": 495.20, "change": 8.30, "change_pct": 1.70},
+            {"symbol": "META", "name": "Meta Platforms", "price": 485.60, "change": 5.40, "change_pct": 1.12},
+            {"symbol": "JPM", "name": "JPMorgan Chase", "price": 198.75, "change": -0.85, "change_pct": -0.43}
+        ]
+    
+    return stocks_data
+
+# Display popular stocks
+popular_stocks = get_popular_stocks()
+
+if popular_stocks:
+    col1, col2, col3, col4 = st.columns(4)
+    cols = [col1, col2, col3, col4]
+    
+    for i, stock in enumerate(popular_stocks):
+        with cols[i % 4]:
+            # กำหนดสีตาม change
+            delta_color = "normal"
+            if stock["change"] > 0:
+                delta_color = "normal"
+            elif stock["change"] < 0:
+                delta_color = "inverse"
+                
+            st.metric(
+                label=f"**{stock['symbol']}**",
+                value=f"${stock['price']:.2f}",
+                delta=f"{stock['change']:+.2f} ({stock['change_pct']:+.2f}%)"
+            )
+            st.caption(stock['name'][:20])
+    
+    if YFINANCE_AVAILABLE:
+        st.caption("📈 ข้อมูลจริงจาก Yahoo Finance (อัพเดททุก 5 นาที)")
+    else:
+        st.caption("⚠️ ข้อมูลจำลอง - ติดตั้ง yfinance เพื่อดูข้อมูลจริง")
+else:
+    st.warning("ไม่สามารถดึงข้อมูลหุ้นได้ในขณะนี้")
 
 # Welcome Message
 st.markdown("""
