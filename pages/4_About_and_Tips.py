@@ -1,9 +1,9 @@
-import streamlit as st
+﻿import streamlit as st
 
 # Configuration
 st.set_page_config(
     page_title="Tips & Resources - Global Stock Guide", 
-    page_icon="💡", 
+    page_icon="", 
     layout="wide"
 )
 
@@ -21,19 +21,7 @@ menu_icons = {
     "tips": "<i class='fa-solid fa-lightbulb' style='margin-right:6px;'></i>"
 }
 
-
-
-
-menu_icons = {
-    "home": "<i class='fa-solid fa-house' style='margin-right:6px;'></i>",
-    "basics": "<i class='fa-solid fa-book-open' style='margin-right:6px;'></i>",
-    "analysis": "<i class='fa-solid fa-chart-line' style='margin-right:6px;'></i>",
-    "forex": "<i class='fa-solid fa-coins' style='margin-right:6px;'></i>",
-    "tips": "<i class='fa-solid fa-lightbulb' style='margin-right:6px;'></i>"
-}
-
-
-""", unsafe_allow_html=True)
+st.markdown(f"""
 <style>
 .menu-container {{
     position: sticky;
@@ -109,109 +97,145 @@ menu_icons = {
 .menu-item.active .fa-solid {{
     color: #ffd700;
 }}
-.menu-icon {{
-    margin-right: 0.5rem;
-    font-size: 1.1em;
-}}
-/* Hamburger for mobile (checkbox hack) */
-#menu-toggle {{
-    display: none;
-}}
-.menu-hamburger {{
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    margin-left: 1rem;
-    z-index: 101;
-}}
-.menu-hamburger span {{
-    width: 24px;
-    height: 3px;
-    background: #fff;
-    margin: 3px 0;
-    border-radius: 2px;
-    transition: all 0.3s;
-}}
-@media (max-width: 900px) {{
-    .menu-nav {{
-        flex-direction: column;
-        padding: 1rem;
-    }}
-    .menu-items {{
-        margin-top: 1rem;
-        flex-direction: column;
-        width: 100%;
-        gap: 0.7rem;
-        display: none;
-    }}
-    #menu-toggle:checked + .menu-hamburger + .menu-items {{
-        display: flex;
-    }}
-    .menu-hamburger {{
-        display: flex;
-    }}
-    .logo {{
-        font-size: 1.1rem;
-    }}
-}}
 </style>
 
 <div class="menu-container">
     <div class="menu-nav">
         <a href="/" target="_self" class="logo"><i class='fa-solid fa-globe'></i>&nbsp;Global Stocks</a>
-        <input type="checkbox" id="menu-toggle" style="display:none;" />
-        <label class="menu-hamburger" for="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
         <div class="menu-items">
-            <a href="/" target="_self" class="menu-item">{menu_icons['home']}หน้าหลัก</a>
-            <a href="/1_Basics_of_Investment" target="_self" class="menu-item">{menu_icons['basics']}พื้นฐานการลงทุน</a>
-            <a href="/2_Stock_Data_Analysis" target="_self" class="menu-item">{menu_icons['analysis']}วิเคราะห์หุ้น</a>
-            <a href="/3_Forex_and_Risk" target="_self" class="menu-item">{menu_icons['forex']}ความเสี่ยง</a>
-            <a href="/4_About_and_Tips" target="_self" class="menu-item active">{menu_icons['tips']}เคล็ดลับ</a>
+            <a href="/" target="_self" class="menu-item">{menu_icons['home']}หนาหลก</a>
+            <a href="1_Basics_of_Investment" target="_self" class="menu-item">{menu_icons['basics']}พนฐานการลงทน</a>
+            <a href="2_Stock_Data_Analysis" target="_self" class="menu-item">{menu_icons['analysis']}วเคราะหหน</a>
+            <a href="3_Forex_and_Risk" target="_self" class="menu-item">{menu_icons['forex']}ความเสยง</a>
+            <a href="4_About_and_Tips" target="_self" class="menu-item active">{menu_icons['tips']}เคลดลบ</a>
         </div>
     </div>
-
-st.success("จบเนื้อหาการเรียนรู้ — ยินดีด้วย! 🎉")
-
-# Additional Resources
-st.markdown("""
-### 📚 แหล่งความรู้เพิ่มเติม
-- **YouTube Channel:** The Motley Fool, Ben Felix
-- **Podcast:** Chat with Traders, The Investors Podcast
-- **Books:** "The Intelligent Investor", "A Random Walk Down Wall Street"
-- **Thai Resources:** [SET.or.th](https://www.set.or.th), Finanseer, The Secret Sauce
+</div>
 """, unsafe_allow_html=True)
+
+st.header(" เคลดลบและแหลงความร")
+st.success(" จบเนอหาการเรยนร  ยนดดวย!")
+
+# Tips Section
+st.subheader(" เคลดลบสำคญในการลงทนหนตางประเทศ")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("""
+    ###  ควรทำ (DO)
+    1. **กระจายความเสยง** - อยาลงทนในหนตวเดยว
+    2. **ลงทนระยะยาว** - อดทนและรอผลตอบแทน
+    3. **ศกษาขอมล** - อานรายงานและขาวสารอยเสมอ
+    4. **ตงเปาหมาย** - รวาเราลงทนเพออะไร
+    5. **ใช DCA** - ลงทนเปนงวด ลดความเสยง
+    6. **ควบคมอารมณ** - อยาตนตระหนกเมอราคาผนผวน
+    """)
+
+with col2:
+    st.markdown("""
+    ###  ไมควรทำ (DON'T)
+    1. **ยมเงนมาลงทน** - อยาใชเงนทไมใชเงนเกบ
+    2. **ฟงซาน** - อยาเชอคำแนะนำทไมมทมา
+    3. **ลงทนแบบลง** - อยาซอหนทไมเขาใจ
+    4. **ซอขายบอย** - คาธรรมเนยมจะกดกนกำไร
+    5. **โลภมาก** - อยากรวยเรวมกขาดทน
+    6. **ละเลยความเสยง** - ตองเขาใจความเสยงกอนลงทน
+    """)
+
+st.divider()
+
+# Resources Section
+st.subheader(" แหลงความรเพมเตม")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("""
+    ###  YouTube Channels
+    - **The Motley Fool**
+    - **Ben Felix**
+    - **Graham Stephan**
+    - **Bloomberg Markets**
+    """)
+
+with col2:
+    st.markdown("""
+    ###  Podcasts
+    - **Chat with Traders**
+    - **The Investors Podcast**
+    - **Planet Money**
+    - **MarketWatch**
+    """)
+
+with col3:
+    st.markdown("""
+    ###  Books
+    - **The Intelligent Investor**
+    - **A Random Walk Down Wall Street**
+    - **The Little Book of Common Sense Investing**
+    - **Rich Dad Poor Dad**
+    """)
+
+st.divider()
+
+# Thai Resources
+st.subheader(" แหลงความรภาษาไทย")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("""
+    ###  เวบไซตและแอพ
+    - **[SET.or.th](https://www.set.or.th)**
+    - **Finanseer**
+    - **The Secret Sauce**
+    - **Finnomena**
+    """)
+
+with col2:
+    st.markdown("""
+    ###  โบรกเกอรในไทย
+    - **Bualuang Securities**
+    - **KTB Securities**
+    - **Phillip Securities**
+    - **Interactive Brokers**
+    """)
+
+st.divider()
+
+# Next Steps
+st.subheader(" ขนตอนตอไป:")
+st.markdown("""
+1. **เปดบญชลงทน** กบโบรกเกอรทมบรการซอหนตางประเทศ
+2. **เรมตนดวยเงนจำนวนนอย** เพอทดลองและเรยนร
+3. **ฝกตดตามขาวสาร** และวเคราะหหนทสนใจ
+4. **สรางพอรตโฟลโอ** ทกระจายความเสยง
+
+ **สำคญ:** ขอมลในเวบไซตนเปนเพยงการศกษาเทานน **ไมใชคำแนะนำในการลงทน**
+""")
 
 # Navigation Buttons
 st.markdown("---")
 col1, col2, col3 = st.columns([1, 2, 1])
 
 with col1:
-    if st.button("← ก่อนหน้า: ความเสี่ยง", use_container_width=True):
-        st.switch_page("3_Forex_and_Risk.py")
+    if st.button(" กอนหนา: ความเสยง", use_container_width=True):
+        st.switch_page("pages/3_Forex_and_Risk.py")
 
 with col2:
-    if st.button("🏠 กลับหน้าหลัก", use_container_width=True):
+    if st.button(" กลบหนาหลก", use_container_width=True):
         st.switch_page("streamlit_app.py")
 
 with col3:
-    if st.button("🔄 เริ่มใหม่", use_container_width=True):
-        st.switch_page("1_Basics_of_Investment.py")
+    if st.button(" เรมใหม", use_container_width=True):
+        st.switch_page("pages/1_Basics_of_Investment.py")
 
+st.markdown("---")
 st.markdown("""
----
-### <i class='fa-solid fa-bullseye'></i> ขั้นตอนต่อไป:
-1. เปิดบัญชีลงทุนกับโบรกเกอร์ที่มีบริการซื้อหุ้นต่างประเทศ
-2. เริ่มต้นด้วยเงินจำนวนน้อย
-3. ฝึกติดตามข่าวสารและวิเคราะห์หุ้น
-4. สร้างพอร์ตโฟลิโอที่กระจายความเสี่ยง
-
-**สำคัญ:** ข้อมูลในเว็บไซต์นี้เป็นเพียงการศึกษาเท่านั้น ไม่ใช่คำแนะนำในการลงทุน
+<div style='text-align: center; padding: 20px; background-color: #f0f2f6; border-radius: 10px;'>
+    <h3> ขอบคณทใช Global Stock Investment Guide! </h3>
+    <p>สรางดวย  เพอการเรยนรการลงทนหนตางประเทศ</p>
+    <p><em>Happy Investing! </em></p>
+</div>
 """, unsafe_allow_html=True)
