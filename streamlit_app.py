@@ -499,25 +499,94 @@ learning_cards = [
 
 # Display learning cards
 cols = st.columns(2)
-for i, card in enumerate(learning_cards):
-    with cols[i % 2]:
-        st.markdown(f"""
-        <div style="
-            background: {card['color']}; 
-            background: linear-gradient(135deg, {card['color']}dd, {card['color']}99);
-            padding: 1.5rem; 
-            border-radius: 12px; 
-            margin: 0.5rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        ">
-            <h3 style="color: white; margin: 0;">
-                {card['icon']} {card['title']}
-            </h3>
-            <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">
-                {card['desc']}
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+
+# Card 1: พื้นฐานการลงทุน
+with cols[0]:
+    st.markdown(f"""
+    <div style="
+        background: #4CAF50; 
+        background: linear-gradient(135deg, #4CAF50dd, #4CAF5099);
+        padding: 1.5rem; 
+        border-radius: 12px; 
+        margin: 0.5rem 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    ">
+        <h3 style="color: white; margin: 0;">
+            <i class='fa-solid fa-book-open'></i> พื้นฐานการลงทุน
+        </h3>
+        <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">
+            เริ่มต้นด้วยความรู้พื้นฐาน
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("📖 เริ่มเรียนรู้", key="learn_basics", use_container_width=True):
+        st.switch_page("pages/1_Basics_of_Investment.py")
+
+# Card 2: วิเคราะห์ข้อมูลหุ้น
+with cols[1]:
+    st.markdown(f"""
+    <div style="
+        background: #2196F3; 
+        background: linear-gradient(135deg, #2196F3dd, #2196F399);
+        padding: 1.5rem; 
+        border-radius: 12px; 
+        margin: 0.5rem 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    ">
+        <h3 style="color: white; margin: 0;">
+            <i class='fa-solid fa-chart-line'></i> วิเคราะห์ข้อมูลหุ้น
+        </h3>
+        <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">
+            เครื่องมือวิเคราะห์แบบเรียลไทม์
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("📊 เริ่มวิเคราะห์", key="learn_analysis", use_container_width=True):
+        st.switch_page("pages/2_Stock_Data_Analysis.py")
+
+# Card 3: ความเสี่ยงและค่าเงิน
+with cols[0]:
+    st.markdown(f"""
+    <div style="
+        background: #FF9800; 
+        background: linear-gradient(135deg, #FF9800dd, #FF980099);
+        padding: 1.5rem; 
+        border-radius: 12px; 
+        margin: 0.5rem 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    ">
+        <h3 style="color: white; margin: 0;">
+            <i class='fa-solid fa-coins'></i> ความเสี่ยงและค่าเงิน
+        </h3>
+        <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">
+            ทำความเข้าใจ Forex Risk
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("💱 เรียนรู้ความเสี่ยง", key="learn_forex", use_container_width=True):
+        st.switch_page("pages/3_Forex_and_Risk.py")
+
+# Card 4: เคล็ดลับและแหล่งความรู้
+with cols[1]:
+    st.markdown(f"""
+    <div style="
+        background: #9C27B0; 
+        background: linear-gradient(135deg, #9C27B0dd, #9C27B099);
+        padding: 1.5rem; 
+        border-radius: 12px; 
+        margin: 0.5rem 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    ">
+        <h3 style="color: white; margin: 0;">
+            <i class='fa-solid fa-lightbulb'></i> เคล็ดลับและแหล่งความรู้
+        </h3>
+        <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">
+            ทรัพยากรและกลยุทธ์ขั้นสูง
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("💡 ดูเคล็ดลับ", key="learn_tips", use_container_width=True):
+        st.switch_page("pages/4_About_and_Tips.py")
 
 # Features Section
 st.markdown("---")
