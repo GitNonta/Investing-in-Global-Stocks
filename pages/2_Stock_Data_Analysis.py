@@ -36,15 +36,15 @@ menu_icons = {
 # Modern Menu Bar
 st.markdown(f"""
 <style>
-.menu-container {background: linear-gradient(90deg, #2C3E50 0%, #3498DB 50%, #9B59B6 100%);padding: 0.8rem 0;margin: -1rem -1rem 2rem -1rem;box-shadow: 0 2px 10px rgba(0,0,0,0.1);position: sticky;top: 0;z-index: 999;}
-.menu-nav {max-width: 1200px;margin: 0 auto;display: flex;justify-content: space-between;align-items: center;padding: 0 2rem;}
-.logo {font-size: 1.5rem;font-weight: bold;color: white;text-decoration: none;}
-.menu-items {display: flex;gap: 2rem;align-items: center;}
-.menu-item {color: white;text-decoration: none;padding: 0.5rem 1rem;border-radius: 20px;transition: all 0.3s ease;font-weight: 500;font-size: 0.95rem;display: flex;align-items: center;}
-.menu-item:hover {background: rgba(255,255,255,0.2);color: white;transform: translateY(-2px);text-decoration: none;}
-.menu-item.active {background: rgba(255,255,255,0.3);color: white;}
-.menu-icon {margin-right: 0.5rem;}
-@media (max-width: 768px) {.menu-nav {flex-direction: column;padding: 1rem;}.menu-items {margin-top: 1rem;flex-wrap: wrap;gap: 1rem;}}
+.menu-container {{background: linear-gradient(90deg, #2C3E50 0%, #3498DB 50%, #9B59B6 100%);padding: 0.8rem 0;margin: -1rem -1rem 2rem -1rem;box-shadow: 0 2px 10px rgba(0,0,0,0.1);position: sticky;top: 0;z-index: 999;}}
+.menu-nav {{max-width: 1200px;margin: 0 auto;display: flex;justify-content: space-between;align-items: center;padding: 0 2rem;}}
+.logo {{font-size: 1.5rem;font-weight: bold;color: white;text-decoration: none;}}
+.menu-items {{display: flex;gap: 2rem;align-items: center;}}
+.menu-item {{color: white;text-decoration: none;padding: 0.5rem 1rem;border-radius: 20px;transition: all 0.3s ease;font-weight: 500;font-size: 0.95rem;display: flex;align-items: center;}}
+.menu-item:hover {{background: rgba(255,255,255,0.2);color: white;transform: translateY(-2px);text-decoration: none;}}
+.menu-item.active {{background: rgba(255,255,255,0.3);color: white;}}
+.menu-icon {{margin-right: 0.5rem;}}
+@media (max-width: 768px) {{.menu-nav {{flex-direction: column;padding: 1rem;}}.menu-items {{margin-top: 1rem;flex-wrap: wrap;gap: 1rem;}}}}
 </style>
 
 <div class="menu-container">
@@ -67,10 +67,10 @@ st.markdown("""
     <h4>📖 เนื้อหาทั้งหมด:</h4>
     <p>
         <a href="/" target="_self">🏠 หน้าหลัก</a> | 
-        <a href="/1_Basics_of_Investment" target="_self">📘 พื้นฐานการลงทุน</a> | 
+        <a href="1_Basics_of_Investment" target="_self">📘 พื้นฐานการลงทุน</a> | 
         📊 <strong>วิเคราะห์ข้อมูลหุ้น</strong> | 
-        <a href="/3_Forex_and_Risk" target="_self">💱 ค่าเงินและความเสี่ยง</a> | 
-        <a href="/4_About_and_Tips" target="_self">💡 เคล็ดลับและแหล่งความรู้</a>
+        <a href="3_Forex_and_Risk" target="_self">💱 ค่าเงินและความเสี่ยง</a> | 
+        <a href="4_About_and_Tips" target="_self">💡 เคล็ดลับและแหล่งความรู้</a>
     </p>
 </div>
 """, unsafe_allow_html=True)
