@@ -55,7 +55,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Navigation Menu using Streamlit
-st.markdown("### 📚 เนื้อหาทั้งหมด")
+st.markdown("### <i class='fa-solid fa-book-open'></i> เนื้อหาทั้งหมด", unsafe_allow_html=True)
 col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
@@ -218,14 +218,14 @@ if all_market_data and len(all_market_data) > 0:
     st.markdown(f"""
     <div style="text-align: center; margin-top: 1rem;">
         <span style="color: #666; font-size: 0.9rem;">
-            📊 {current_slide + 1}/{total_slides} • 
-            {"🔴" if YFINANCE_AVAILABLE else "⚠️"} 
+            <i class='fa-solid fa-chart-line'></i> {current_slide + 1}/{total_slides} • 
+            {"<i class='fa-solid fa-circle' style='color: #f44336;'></i>" if YFINANCE_AVAILABLE else "<i class='fa-solid fa-triangle-exclamation' style='color: #ff9800;'></i>"} 
             {f"ข้อมูลจริงจาก Yahoo Finance" if YFINANCE_AVAILABLE else "ข้อมูลจำลอง"} • 
             อัพเดท: {current_date}
         </span>
         <br/>
         <span style="color: #999; font-size: 0.8rem;">
-            🔄 สไลด์โชว์อัตโนมัติทุก {slide_interval} วินาที ({len(all_market_data)} รายการ)
+            <i class='fa-solid fa-rotate'></i> สไลด์โชว์อัตโนมัติทุก {slide_interval} วินาที ({len(all_market_data)} รายการ)
         </span>
     </div>
     """, unsafe_allow_html=True)
@@ -316,7 +316,7 @@ if popular_stocks:
     for i, stock in enumerate(popular_stocks):
         with cols[i % 4]:
             # กำหนดสีตาม change
-            change_color = "🟢" if stock["change"] > 0 else "🔴" if stock["change"] < 0 else "⚪"
+            change_icon = "<i class='fa-solid fa-circle' style='color: #4caf50;'></i>" if stock["change"] > 0 else "<i class='fa-solid fa-circle' style='color: #f44336;'></i>" if stock["change"] < 0 else "<i class='fa-solid fa-circle' style='color: #9e9e9e;'></i>"
             logo_url = f"https://logo.clearbit.com/{stock['domain']}"
             
             # แสดงโลโก้และข้อมูล
@@ -336,9 +336,9 @@ if popular_stocks:
             st.caption(stock['name'][:20])
     
     if YFINANCE_AVAILABLE:
-        st.caption("📈 ข้อมูลจริงจาก Yahoo Finance (อัพเดททุก 5 นาที)")
+        st.caption("<i class='fa-solid fa-chart-line'></i> ข้อมูลจริงจาก Yahoo Finance (อัพเดททุก 5 นาที)", unsafe_allow_html=True)
     else:
-        st.caption("⚠️ ข้อมูลจำลอง - ติดตั้ง yfinance เพื่อดูข้อมูลจริง")
+        st.caption("<i class='fa-solid fa-triangle-exclamation'></i> ข้อมูลจำลอง - ติดตั้ง yfinance เพื่อดูข้อมูลจริง", unsafe_allow_html=True)
 else:
     st.warning("ไม่สามารถดึงข้อมูลหุ้นได้ในขณะนี้")
 
@@ -395,22 +395,22 @@ cols = st.columns(2)
 
 # Card 1: พื้นฐานการลงทุน
 with cols[0]:
-    if st.button("📚 พื้นฐานการลงทุน\n\nเริ่มต้นด้วยความรู้พื้นฐาน", key="card_basics", use_container_width=True, type="secondary"):
+    if st.button("<i class='fa-solid fa-book-open'></i> พื้นฐานการลงทุน\n\nเริ่มต้นด้วยความรู้พื้นฐาน", key="card_basics", use_container_width=True, type="secondary"):
         st.switch_page("pages/1_Basics_of_Investment.py")
     
 # Card 2: วิเคราะห์ข้อมูลหุ้น
 with cols[1]:
-    if st.button("📊 วิเคราะห์ข้อมูลหุ้น\n\nเครื่องมือวิเคราะห์แบบเรียลไทม์", key="card_analysis", use_container_width=True, type="secondary"):
+    if st.button("<i class='fa-solid fa-chart-line'></i> วิเคราะห์ข้อมูลหุ้น\n\nเครื่องมือวิเคราะห์แบบเรียลไทม์", key="card_analysis", use_container_width=True, type="secondary"):
         st.switch_page("pages/2_Stock_Data_Analysis.py")
 
 # Card 3: ความเสี่ยงและค่าเงิน
 with cols[0]:
-    if st.button("💱 ความเสี่ยงและค่าเงิน\n\nทำความเข้าใจ Forex Risk", key="card_forex", use_container_width=True, type="secondary"):
+    if st.button("<i class='fa-solid fa-coins'></i> ความเสี่ยงและค่าเงิน\n\nทำความเข้าใจ Forex Risk", key="card_forex", use_container_width=True, type="secondary"):
         st.switch_page("pages/3_Forex_and_Risk.py")
 
 # Card 4: เคล็ดลับและแหล่งความรู้
 with cols[1]:
-    if st.button("💡 เคล็ดลับและแหล่งความรู้\n\nทรัพยากรและกลยุทธ์ขั้นสูง", key="card_tips", use_container_width=True, type="secondary"):
+    if st.button("<i class='fa-solid fa-lightbulb'></i> เคล็ดลับและแหล่งความรู้\n\nทรัพยากรและกลยุทธ์ขั้นสูง", key="card_tips", use_container_width=True, type="secondary"):
         st.switch_page("pages/4_About_and_Tips.py")
 
 # Features Section
