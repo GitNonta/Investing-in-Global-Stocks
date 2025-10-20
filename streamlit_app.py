@@ -509,20 +509,13 @@ for i, card in enumerate(learning_cards):
             border-radius: 12px; 
             margin: 0.5rem 0;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease;
         ">
             <h3 style="color: white; margin: 0;">
                 {card['icon']} {card['title']}
             </h3>
-            <p style="color: white; opacity: 0.9; margin: 0.5rem 0;">
+            <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">
                 {card['desc']}
             </p>
-            <a href="{card['link']}" target="_self" style="
-                color: white; 
-                text-decoration: none; 
-                font-weight: bold;
-                opacity: 0.8;
-            ">เริ่มเรียนรู้ →</a>
         </div>
         """, unsafe_allow_html=True)
 
