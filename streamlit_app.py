@@ -152,7 +152,7 @@ st.markdown(f"""
 
 <div class="menu-container">
     <div class="menu-nav">
-        <a href="/" class="logo"><i class='fa-solid fa-globe'></i>&nbsp;Global Stocks</a>
+        <a href="/" target="_self" class="logo"><i class='fa-solid fa-globe'></i>&nbsp;Global Stocks</a>
         <input type="checkbox" id="menu-toggle" style="display:none;" />
         <label class="menu-hamburger" for="menu-toggle">
             <span></span>
