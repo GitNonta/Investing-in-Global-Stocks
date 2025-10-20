@@ -396,22 +396,22 @@ cols = st.columns(2)
 
 # Card 1: พื้นฐานการลงทุน
 with cols[0]:
-    if st.button("<i class='fa-solid fa-book-open'></i> พื้นฐานการลงทุน\n\nเริ่มต้นด้วยความรู้พื้นฐาน", key="card_basics", use_container_width=True, type="secondary"):
+    if st.button("📖 พื้นฐานการลงทุน\n\nเริ่มต้นด้วยความรู้พื้นฐาน", key="card_basics", use_container_width=True, type="secondary"):
         st.switch_page("pages/1_Basics_of_Investment.py")
     
 # Card 2: วิเคราะห์ข้อมูลหุ้น
 with cols[1]:
-    if st.button("<i class='fa-solid fa-chart-line'></i> วิเคราะห์ข้อมูลหุ้น\n\nเครื่องมือวิเคราะห์แบบเรียลไทม์", key="card_analysis", use_container_width=True, type="secondary"):
+    if st.button("📊 วิเคราะห์ข้อมูลหุ้น\n\nเครื่องมือวิเคราะห์แบบเรียลไทม์", key="card_analysis", use_container_width=True, type="secondary"):
         st.switch_page("pages/2_Stock_Data_Analysis.py")
 
 # Card 3: ความเสี่ยงและค่าเงิน
 with cols[0]:
-    if st.button("<i class='fa-solid fa-coins'></i> ความเสี่ยงและค่าเงิน\n\nทำความเข้าใจ Forex Risk", key="card_forex", use_container_width=True, type="secondary"):
+    if st.button("💰 ความเสี่ยงและค่าเงิน\n\nทำความเข้าใจ Forex Risk", key="card_forex", use_container_width=True, type="secondary"):
         st.switch_page("pages/3_Forex_and_Risk.py")
 
 # Card 4: เคล็ดลับและแหล่งความรู้
 with cols[1]:
-    if st.button("<i class='fa-solid fa-lightbulb'></i> เคล็ดลับและแหล่งความรู้\n\nทรัพยากรและกลยุทธ์ขั้นสูง", key="card_tips", use_container_width=True, type="secondary"):
+    if st.button("💡 เคล็ดลับและแหล่งความรู้\n\nทรัพยากรและกลยุทธ์ขั้นสูง", key="card_tips", use_container_width=True, type="secondary"):
         st.switch_page("pages/4_About_and_Tips.py")
 
 # Features Section
