@@ -56,27 +56,64 @@ st.markdown("""
 
 # Navigation Menu using Streamlit
 st.markdown("### <i class='fa-solid fa-book-open'></i> เนื้อหาทั้งหมด", unsafe_allow_html=True)
+
+# Custom CSS for navigation buttons
+st.markdown("""
+<style>
+.nav-button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 0.95rem;
+}
+.nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.nav-button.active {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+}
+.nav-button i {
+    margin-right: 6px;
+}
+</style>
+""", unsafe_allow_html=True)
+
 col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
-    if st.button("🏠 หน้าหลัก", use_container_width=True, type="primary"):
+    if st.button("หน้าหลัก", use_container_width=True, type="primary", key="nav_home", help="กลับสู่หน้าหลัก"):
         st.rerun()
+    st.markdown("<div style='text-align:center;'><i class='fa-solid fa-house'></i></div>", unsafe_allow_html=True)
 
 with col2:
-    if st.button("📘 พื้นฐานการลงทุน", use_container_width=True):
+    if st.button("พื้นฐานการลงทุน", use_container_width=True, key="nav_basics"):
         st.switch_page("pages/1_Basics_of_Investment.py")
+    st.markdown("<div style='text-align:center;'><i class='fa-solid fa-book-open'></i></div>", unsafe_allow_html=True)
 
 with col3:
-    if st.button("📊 วิเคราะห์หุ้น", use_container_width=True):
+    if st.button("วิเคราะห์หุ้น", use_container_width=True, key="nav_analysis"):
         st.switch_page("pages/2_Stock_Data_Analysis.py")
+    st.markdown("<div style='text-align:center;'><i class='fa-solid fa-chart-line'></i></div>", unsafe_allow_html=True)
 
 with col4:
-    if st.button("💱 ความเสี่ยง", use_container_width=True):
+    if st.button("ความเสี่ยง", use_container_width=True, key="nav_forex"):
         st.switch_page("pages/3_Forex_and_Risk.py")
+    st.markdown("<div style='text-align:center;'><i class='fa-solid fa-coins'></i></div>", unsafe_allow_html=True)
 
 with col5:
-    if st.button("💡 เคล็ดลับ", use_container_width=True):
+    if st.button("เคล็ดลับ", use_container_width=True, key="nav_tips"):
         st.switch_page("pages/4_About_and_Tips.py")
+    st.markdown("<div style='text-align:center;'><i class='fa-solid fa-lightbulb'></i></div>", unsafe_allow_html=True)
 
 st.divider()
 
@@ -231,7 +268,7 @@ if all_market_data and len(all_market_data) > 0:
     """, unsafe_allow_html=True)
     
     if not YFINANCE_AVAILABLE:
-        st.info("💡 รันคำสั่ง: `pip install yfinance` เพื่อดูข้อมูลตลาดแบบเรียลไทม์")
+        st.info("<i class='fa-solid fa-lightbulb'></i> รันคำสั่ง: `pip install yfinance` เพื่อดูข้อมูลตลาดแบบเรียลไทม์", icon="💡")
     
     # Force refresh every 3 seconds
     st.markdown(f"""
