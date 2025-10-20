@@ -20,6 +20,6 @@ def load_css(css_file):
 
 def load_all_styles():
     """Load all CSS files for the application"""
-    css_files = ['main.css', 'hero.css', 'cards.css', 'stocks.css']
+    css_files = ['main.css', 'hero.css', 'cards.css', 'stocks.css', 'slideshow.css']
     for css_file in css_files:
         load_css(css_file)

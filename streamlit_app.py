@@ -93,6 +93,294 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Apple-inspired Slideshow
+st.markdown("""
+<div class="slideshow-container">
+    <!-- Slide 1: Welcome -->
+    <div class="slide slide-1 active">
+        <div class="slide-controls">
+            <button class="control-btn" onclick="toggleAutoPlay()">
+                <i class="fa-solid fa-pause"></i> <span id="play-text">Pause</span>
+            </button>
+        </div>
+        <div class="slide-content">
+            <div class="slide-icon">💎</div>
+            <h2>ยินดีต้อนรับสู่การลงทุนระดับโลก</h2>
+            <p>เริ่มต้นเส้นทางการลงทุนของคุณด้วยเครื่องมือและความรู้ที่ครบครัน</p>
+            <div class="slide-features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div>ข้อมูลเรียลไทม์</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <div>เรียนรู้ฟรี</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div>ปลอดภัย</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Analysis Tools -->
+    <div class="slide slide-2">
+        <div class="slide-content">
+            <div class="slide-icon">📊</div>
+            <h2>เครื่องมือวิเคราะห์ที่ทรงพลัง</h2>
+            <p>วิเคราะห์หุ้นด้วย AI และข้อมูลแบบเรียลไทม์จาก Alpha Vantage & Yahoo Finance</p>
+            <div class="slide-features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-robot"></i>
+                    <div>AI Analysis</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-chart-area"></i>
+                    <div>Interactive Charts</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-database"></i>
+                    <div>Real-time Data</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Global Markets -->
+    <div class="slide slide-3">
+        <div class="slide-content">
+            <div class="slide-icon">🌍</div>
+            <h2>เข้าถึงตลาดโลก</h2>
+            <p>ลงทุนในหุ้นชั้นนำจาก NYSE, NASDAQ, LSE และตลาดอื่น ๆ ทั่วโลก</p>
+            <div class="slide-features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <div>NYSE & NASDAQ</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-landmark"></i>
+                    <div>London Stock Exchange</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-yen-sign"></i>
+                    <div>Asian Markets</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Risk Management -->
+    <div class="slide slide-4">
+        <div class="slide-content">
+            <div class="slide-icon">🛡️</div>
+            <h2>บริหารความเสี่ยงอย่างมืออาชีพ</h2>
+            <p>เครื่องคำนวณความเสี่ยง Forex และเครื่องมือบริหารพอร์ตโฟลิโอ</p>
+            <div class="slide-features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-calculator"></i>
+                    <div>Risk Calculator</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-coins"></i>
+                    <div>Forex Analysis</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <div>Portfolio Management</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Learn & Grow -->
+    <div class="slide slide-5">
+        <div class="slide-content">
+            <div class="slide-icon">🚀</div>
+            <h2>เรียนรู้และเติบโตไปด้วยกัน</h2>
+            <p>บทเรียน เคล็ดลับ และกลยุทธ์จากผู้เชี่ยวชาญเพื่อความสำเร็จของคุณ</p>
+            <div class="slide-features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-book-open"></i>
+                    <div>Free Courses</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <div>Expert Tips</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-trophy"></i>
+                    <div>Success Stories</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div class="slide-arrow prev" onclick="changeSlide(-1)">
+        <i class="fa-solid fa-chevron-left"></i>
+    </div>
+    <div class="slide-arrow next" onclick="changeSlide(1)">
+        <i class="fa-solid fa-chevron-right"></i>
+    </div>
+
+    <!-- Dots Indicator -->
+    <div class="slide-dots">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="slide-progress">
+        <div class="slide-progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Swipe Hint for Mobile -->
+    <div class="swipe-hint">
+        <i class="fa-solid fa-hand-pointer"></i> ลากเพื่อเปลี่ยนสไลด์
+    </div>
+</div>
+
+<script>
+let slideIndex = 0;
+let autoPlayInterval;
+let isAutoPlaying = true;
+let progressInterval;
+
+// Initialize slideshow
+document.addEventListener('DOMContentLoaded', function() {
+    showSlide(slideIndex);
+    startAutoPlay();
+    
+    // Touch/Swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const container = document.querySelector('.slideshow-container');
+    
+    container.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    container.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) changeSlide(1);
+        if (touchEndX > touchStartX + 50) changeSlide(-1);
+    }
+});
+
+function showSlide(n) {
+    const slides = document.getElementsByClassName('slide');
+    const dots = document.getElementsByClassName('dot');
+    
+    if (n >= slides.length) { slideIndex = 0; }
+    if (n < 0) { slideIndex = slides.length - 1; }
+    
+    // Hide all slides
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('active');
+    }
+    
+    // Remove active from all dots
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove('active');
+    }
+    
+    // Show current slide
+    slides[slideIndex].classList.add('active');
+    dots[slideIndex].classList.add('active');
+    
+    // Reset progress bar
+    resetProgress();
+}
+
+function changeSlide(n) {
+    slideIndex += n;
+    showSlide(slideIndex);
+    
+    // Restart autoplay
+    if (isAutoPlaying) {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+    }
+}
+
+function currentSlide(n) {
+    slideIndex = n;
+    showSlide(slideIndex);
+    
+    // Restart autoplay
+    if (isAutoPlaying) {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+    }
+}
+
+function startAutoPlay() {
+    const duration = 5000; // 5 seconds per slide
+    let progress = 0;
+    
+    // Clear existing intervals
+    clearInterval(autoPlayInterval);
+    clearInterval(progressInterval);
+    
+    // Start new autoplay
+    autoPlayInterval = setInterval(() => {
+        changeSlide(1);
+    }, duration);
+    
+    // Progress bar animation
+    progressInterval = setInterval(() => {
+        progress += 100 / (duration / 100);
+        if (progress >= 100) {
+            progress = 0;
+        }
+        document.getElementById('progress-bar').style.width = progress + '%';
+    }, 100);
+}
+
+function resetProgress() {
+    document.getElementById('progress-bar').style.width = '0%';
+}
+
+function toggleAutoPlay() {
+    const playText = document.getElementById('play-text');
+    const btn = document.querySelector('.control-btn i');
+    
+    if (isAutoPlaying) {
+        clearInterval(autoPlayInterval);
+        clearInterval(progressInterval);
+        isAutoPlaying = false;
+        playText.textContent = 'Play';
+        btn.className = 'fa-solid fa-play';
+    } else {
+        startAutoPlay();
+        isAutoPlaying = true;
+        playText.textContent = 'Pause';
+        btn.className = 'fa-solid fa-pause';
+    }
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') changeSlide(-1);
+    if (e.key === 'ArrowRight') changeSlide(1);
+    if (e.key === ' ') {
+        e.preventDefault();
+        toggleAutoPlay();
+    }
+});
+</script>
+""", unsafe_allow_html=True)
+
+st.markdown("---")
+
 # Market Overview with images
 col1, col2, col3 = st.columns(3)
 
