@@ -36,17 +36,30 @@ st.markdown(f"""
 
 <div class="menu-container">
     <div class="menu-nav">
-        <a href="/" target="_self" class="logo"> Global Stocks</a>
-        <div class="menu-items">
-            <a href="/" target="_self" class="menu-item">{menu_icons['home']}หน้าหลัก</a>
-            <a href="1_Basics_of_Investment" target="_self" class="menu-item active">{menu_icons['basics']}พื้นฐานการลงทุน</a>
-            <a href="2_Stock_Data_Analysis" target="_self" class="menu-item">{menu_icons['analysis']}วิเคราะห์หุ้น</a>
-            <a href="3_Forex_and_Risk" target="_self" class="menu-item">{menu_icons['forex']}ความเสี่ยง</a>
-            <a href="4_About_and_Tips" target="_self" class="menu-item">{menu_icons['tips']}เคล็ดลับ</a>
-        </div>
+        <div class="logo"> Global Stocks</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
+
+# Navigation Menu
+col1, col2, col3, col4, col5 = st.columns(5)
+with col1:
+    if st.button("🏠 หน้าหลัก", use_container_width=True):
+        st.switch_page("streamlit_app.py")
+with col2:
+    if st.button("📘 พื้นฐานการลงทุน", use_container_width=True, type="primary"):
+        st.rerun()
+with col3:
+    if st.button("📊 วิเคราะห์หุ้น", use_container_width=True):
+        st.switch_page("pages/2_Stock_Data_Analysis.py")
+with col4:
+    if st.button("💱 ความเสี่ยง", use_container_width=True):
+        st.switch_page("pages/3_Forex_and_Risk.py")
+with col5:
+    if st.button("💡 เคล็ดลับ", use_container_width=True):
+        st.switch_page("pages/4_About_and_Tips.py")
+
+st.divider()
 
 st.header(" พนฐานการลงทนในหนตางประเทศ")
 st.write("""

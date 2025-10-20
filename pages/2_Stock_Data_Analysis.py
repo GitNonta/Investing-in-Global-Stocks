@@ -49,31 +49,30 @@ st.markdown(f"""
 
 <div class="menu-container">
     <div class="menu-nav">
-        <a href="/" target="_self" class="logo">🌍 Global Stocks</a>
-        <div class="menu-items">
-            <a href="/" target="_self" class="menu-item">{menu_icons['home']}หน้าหลัก</a>
-            <a href="1_Basics_of_Investment" target="_self" class="menu-item">{menu_icons['basics']}พื้นฐานการลงทุน</a>
-            <a href="2_Stock_Data_Analysis" target="_self" class="menu-item active">{menu_icons['analysis']}วิเคราะห์หุ้น</a>
-            <a href="3_Forex_and_Risk" target="_self" class="menu-item">{menu_icons['forex']}ความเสี่ยง</a>
-            <a href="4_About_and_Tips" target="_self" class="menu-item">{menu_icons['tips']}เคล็ดลับ</a>
-        </div>
+        <div class="logo">🌍 Global Stocks</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Navigation Links
-st.markdown("""
-<div style="background-color: #f0f2f6; padding: 10px; border-radius: 10px; margin-bottom: 20px;">
-    <h4>📖 เนื้อหาทั้งหมด:</h4>
-    <p>
-        <a href="/" target="_self">🏠 หน้าหลัก</a> | 
-        <a href="1_Basics_of_Investment" target="_self">📘 พื้นฐานการลงทุน</a> | 
-        📊 <strong>วิเคราะห์ข้อมูลหุ้น</strong> | 
-        <a href="3_Forex_and_Risk" target="_self">💱 ค่าเงินและความเสี่ยง</a> | 
-        <a href="4_About_and_Tips" target="_self">💡 เคล็ดลับและแหล่งความรู้</a>
-    </p>
-</div>
-""", unsafe_allow_html=True)
+# Navigation Menu
+col1, col2, col3, col4, col5 = st.columns(5)
+with col1:
+    if st.button("🏠 หน้าหลัก", use_container_width=True):
+        st.switch_page("streamlit_app.py")
+with col2:
+    if st.button("📘 พื้นฐานการลงทุน", use_container_width=True):
+        st.switch_page("pages/1_Basics_of_Investment.py")
+with col3:
+    if st.button("📊 วิเคราะห์หุ้น", use_container_width=True, type="primary"):
+        st.rerun()
+with col4:
+    if st.button("💱 ความเสี่ยง", use_container_width=True):
+        st.switch_page("pages/3_Forex_and_Risk.py")
+with col5:
+    if st.button("💡 เคล็ดลับ", use_container_width=True):
+        st.switch_page("pages/4_About_and_Tips.py")
+
+st.divider()
 
 st.header("📊 วิเคราะห์ข้อมูลหุ้นจริง")
 st.write("ลองดูกราฟราคาหุ้นแบบเรียลไทม์กันเถอะ!")
