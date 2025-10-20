@@ -251,6 +251,18 @@ st.markdown("<h2><i class='fa-solid fa-fire'></i> หุ้นยอดนิย
 @st.cache_data(ttl=300)  # Cache for 5 minutes
 def get_popular_stocks():
     """ดึงข้อมูลหุ้นยอดนิยม"""
+    # Dictionary mapping symbols to company domains for logos
+    symbol_domains = {
+        "AAPL": "apple.com",
+        "MSFT": "microsoft.com",
+        "GOOGL": "google.com",
+        "AMZN": "amazon.com",
+        "TSLA": "tesla.com",
+        "NVDA": "nvidia.com",
+        "META": "meta.com",
+        "JPM": "jpmorganchase.com"
+    }
+    
     popular_symbols = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "NVDA", "META", "JPM"]
     stocks_data = []
     
@@ -273,7 +285,8 @@ def get_popular_stocks():
                         "name": info.get('shortName', symbol),
                         "price": current_price,
                         "change": change,
-                        "change_pct": change_pct
+                        "change_pct": change_pct,
+                        "domain": symbol_domains.get(symbol, "example.com")
                     })
         except Exception as e:
             st.error(f"เกิดข้อผิดพลาดในการดึงข้อมูลหุ้น: {str(e)}")
@@ -281,14 +294,14 @@ def get_popular_stocks():
     else:
         # ข้อมูลจำลอง
         stocks_data = [
-            {"symbol": "AAPL", "name": "Apple Inc.", "price": 178.50, "change": 2.30, "change_pct": 1.31},
-            {"symbol": "MSFT", "name": "Microsoft Corp", "price": 412.30, "change": -1.50, "change_pct": -0.36},
-            {"symbol": "GOOGL", "name": "Alphabet Inc", "price": 142.80, "change": 3.20, "change_pct": 2.29},
-            {"symbol": "AMZN", "name": "Amazon.com Inc", "price": 178.25, "change": 1.75, "change_pct": 0.99},
-            {"symbol": "TSLA", "name": "Tesla Inc", "price": 242.80, "change": -4.50, "change_pct": -1.82},
-            {"symbol": "NVDA", "name": "NVIDIA Corp", "price": 495.20, "change": 8.30, "change_pct": 1.70},
-            {"symbol": "META", "name": "Meta Platforms", "price": 485.60, "change": 5.40, "change_pct": 1.12},
-            {"symbol": "JPM", "name": "JPMorgan Chase", "price": 198.75, "change": -0.85, "change_pct": -0.43}
+            {"symbol": "AAPL", "name": "Apple Inc.", "price": 178.50, "change": 2.30, "change_pct": 1.31, "domain": "apple.com"},
+            {"symbol": "MSFT", "name": "Microsoft Corp", "price": 412.30, "change": -1.50, "change_pct": -0.36, "domain": "microsoft.com"},
+            {"symbol": "GOOGL", "name": "Alphabet Inc", "price": 142.80, "change": 3.20, "change_pct": 2.29, "domain": "google.com"},
+            {"symbol": "AMZN", "name": "Amazon.com Inc", "price": 178.25, "change": 1.75, "change_pct": 0.99, "domain": "amazon.com"},
+            {"symbol": "TSLA", "name": "Tesla Inc", "price": 242.80, "change": -4.50, "change_pct": -1.82, "domain": "tesla.com"},
+            {"symbol": "NVDA", "name": "NVIDIA Corp", "price": 495.20, "change": 8.30, "change_pct": 1.70, "domain": "nvidia.com"},
+            {"symbol": "META", "name": "Meta Platforms", "price": 485.60, "change": 5.40, "change_pct": 1.12, "domain": "meta.com"},
+            {"symbol": "JPM", "name": "JPMorgan Chase", "price": 198.75, "change": -0.85, "change_pct": -0.43, "domain": "jpmorganchase.com"}
         ]
     
     return stocks_data
@@ -303,12 +316,18 @@ if popular_stocks:
     for i, stock in enumerate(popular_stocks):
         with cols[i % 4]:
             # กำหนดสีตาม change
-            delta_color = "normal"
-            if stock["change"] > 0:
-                delta_color = "normal"
-            elif stock["change"] < 0:
-                delta_color = "inverse"
-                
+            change_color = "🟢" if stock["change"] > 0 else "🔴" if stock["change"] < 0 else "⚪"
+            logo_url = f"https://logo.clearbit.com/{stock['domain']}"
+            
+            # แสดงโลโก้และข้อมูล
+            st.markdown(f"""
+            <div style="text-align: center; margin-bottom: 0.5rem;">
+                <img src="{logo_url}" alt="{stock['symbol']}" 
+                     style="width: 40px; height: 40px; border-radius: 8px; object-fit: contain; background: #f8f9fa; padding: 4px;"
+                     onerror="this.style.display='none'">
+            </div>
+            """, unsafe_allow_html=True)
+            
             st.metric(
                 label=f"**{stock['symbol']}**",
                 value=f"${stock['price']:.2f}",
@@ -440,17 +459,21 @@ st.markdown("<h2><i class='fa-solid fa-fire'></i> หุ้นยอดนิย
 
 pop_cols = st.columns(4)
 popular_stocks = [
-    {"symbol": "AAPL", "name": "Apple Inc.", "price": "$175.84", "change": "+2.1%"},
-    {"symbol": "MSFT", "name": "Microsoft Corp.", "price": "$338.11", "change": "+0.8%"}, 
-    {"symbol": "GOOGL", "name": "Alphabet Inc.", "price": "$126.50", "change": "-0.3%"},
-    {"symbol": "TSLA", "name": "Tesla Inc.", "price": "$248.50", "change": "+4.2%"}
+    {"symbol": "AAPL", "name": "Apple Inc.", "price": "$175.84", "change": "+2.1%", "domain": "apple.com"},
+    {"symbol": "MSFT", "name": "Microsoft Corp.", "price": "$338.11", "change": "+0.8%", "domain": "microsoft.com"}, 
+    {"symbol": "GOOGL", "name": "Alphabet Inc.", "price": "$126.50", "change": "-0.3%", "domain": "google.com"},
+    {"symbol": "TSLA", "name": "Tesla Inc.", "price": "$248.50", "change": "+4.2%", "domain": "tesla.com"}
 ]
 
 for i, stock in enumerate(popular_stocks):
     with pop_cols[i]:
         change_color = "green" if "+" in stock["change"] else "red"
+        logo_url = f"https://logo.clearbit.com/{stock['domain']}"
         st.markdown(f"""
         <div class="stock-card">
+            <img src="{logo_url}" alt="{stock['symbol']}" class="stock-logo" 
+                 onerror="this.style.display='none'" 
+                 style="width: 48px; height: 48px; border-radius: 8px; margin-bottom: 0.5rem; object-fit: contain;">
             <h4>{stock['symbol']}</h4>
             <p class="stock-name">{stock['name']}</p>
             <p class="stock-price">{stock['price']}</p>
