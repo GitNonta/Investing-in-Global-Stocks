@@ -1,0 +1,139 @@
+/* Menu Bar Styles */
+.menu-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(44,62,80,0.92);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 24px 0 rgba(44,62,80,0.12);
+    padding: 0.7rem 0;
+    margin: 0 0 1.5rem 0;
+    transition: background 0.3s;
+}
+
+.menu-nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    transition: transform 0.2s;
+}
+
+.logo:hover {
+    transform: scale(1.07) rotate(-2deg);
+    color: #ffd700;
+}
+
+.menu-items {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    transition: gap 0.2s;
+}
+
+.menu-item {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.35rem 1.1rem;
+    border-radius: 18px;
+    font-weight: 500;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: background 0.18s, color 0.18s, transform 0.18s;
+    overflow: hidden;
+}
+
+.menu-item .fa-solid {
+    transition: transform 0.25s cubic-bezier(.68,-0.55,.27,1.55), color 0.18s;
+}
+
+.menu-item:hover .fa-solid {
+    transform: scale(1.18) rotate(-10deg);
+    color: #ffd700;
+}
+
+.menu-item:hover {
+    background: #3b4a5a;
+    color: #ffd700;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 2px 8px 0 rgba(44,62,80,0.10);
+}
+
+.menu-item.active {
+    background: linear-gradient(90deg, #667eea 60%, #764ba2 100%);
+    color: #fff;
+    box-shadow: 0 2px 12px 0 rgba(102,126,234,0.10);
+    font-weight: 700;
+}
+
+.menu-item.active .fa-solid {
+    color: #ffd700;
+}
+
+.menu-icon {
+    margin-right: 0.5rem;
+    font-size: 1.1em;
+}
+
+/* Hamburger for mobile (checkbox hack) */
+#menu-toggle {
+    display: none;
+}
+
+.menu-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    margin-left: 1rem;
+    z-index: 101;
+}
+
+.menu-hamburger span {
+    width: 24px;
+    height: 3px;
+    background: #fff;
+    margin: 3px 0;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+@media (max-width: 900px) {
+    .menu-nav {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .menu-items {
+        margin-top: 1rem;
+        flex-direction: column;
+        width: 100%;
+        gap: 0.7rem;
+        display: none;
+    }
+    #menu-toggle:checked + .menu-hamburger + .menu-items {
+        display: flex;
+    }
+    .menu-hamburger {
+        display: flex;
+    }
+    .logo {
+        font-size: 1.1rem;
+    }
+}

@@ -7,6 +7,7 @@ import os
 # เพิ่ม path สำหรับ import config
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from config import ALPHA_VANTAGE_API_KEY, ALPHA_VANTAGE_BASE_URL
+from css_loader import load_all_styles
 
 try:
     import yfinance as yf
@@ -27,6 +28,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Load all CSS styles
+load_all_styles()
+
 menu_icons = {
     "home": "<i class='fa-solid fa-house' style='margin-right:6px;'></i>",
     "basics": "<i class='fa-solid fa-book-open' style='margin-right:6px;'></i>",
@@ -36,133 +40,7 @@ menu_icons = {
 }
 
 # Modern Menu Bar
-st.markdown(f"""
-<style>
-.menu-container {{
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(44,62,80,0.92);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 4px 24px 0 rgba(44,62,80,0.12);
-    padding: 0.7rem 0;
-    margin: 0 0 1.5rem 0;
-    transition: background 0.3s;
-}}
-.menu-nav {{
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1.5rem;
-}}
-.logo {{
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    letter-spacing: 1px;
-    transition: transform 0.2s;
-}}
-.logo:hover {{
-    transform: scale(1.07) rotate(-2deg);
-    color: #ffd700;
-}}
-.menu-items {{
-    display: flex;
-    gap: 1.2rem;
-    align-items: center;
-    transition: gap 0.2s;
-}}
-.menu-item {{
-    color: #fff;
-    text-decoration: none;
-    padding: 0.35rem 1.1rem;
-    border-radius: 18px;
-    font-weight: 500;
-    font-size: 1.05rem;
-    display: flex;
-    align-items: center;
-    position: relative;
-    transition: background 0.18s, color 0.18s, transform 0.18s;
-    overflow: hidden;
-}}
-.menu-item .fa-solid {{
-    transition: transform 0.25s cubic-bezier(.68,-0.55,.27,1.55), color 0.18s;
-}}
-.menu-item:hover .fa-solid {{
-    transform: scale(1.18) rotate(-10deg);
-    color: #ffd700;
-}}
-.menu-item:hover {{
-    background: #3b4a5a;
-    color: #ffd700;
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 2px 8px 0 rgba(44,62,80,0.10);
-}}
-.menu-item.active {{
-    background: linear-gradient(90deg, #667eea 60%, #764ba2 100%);
-    color: #fff;
-    box-shadow: 0 2px 12px 0 rgba(102,126,234,0.10);
-    font-weight: 700;
-}}
-.menu-item.active .fa-solid {{
-    color: #ffd700;
-}}
-.menu-icon {{
-    margin-right: 0.5rem;
-    font-size: 1.1em;
-}}
-/* Hamburger for mobile (checkbox hack) */
-#menu-toggle {{
-    display: none;
-}}
-.menu-hamburger {{
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    margin-left: 1rem;
-    z-index: 101;
-}}
-.menu-hamburger span {{
-    width: 24px;
-    height: 3px;
-    background: #fff;
-    margin: 3px 0;
-    border-radius: 2px;
-    transition: all 0.3s;
-}}
-@media (max-width: 900px) {{
-    .menu-nav {{
-        flex-direction: column;
-        padding: 1rem;
-    }}
-    .menu-items {{
-        margin-top: 1rem;
-        flex-direction: column;
-        width: 100%;
-        gap: 0.7rem;
-        display: none;
-    }}
-    #menu-toggle:checked + .menu-hamburger + .menu-items {{
-        display: flex;
-    }}
-    .menu-hamburger {{
-        display: flex;
-    }}
-    .logo {{
-        font-size: 1.1rem;
-    }}
-}}
-</style>
-
+st.markdown("""
 <div class="menu-container">
     <div class="menu-nav">
         <div class="logo"><i class='fa-solid fa-globe'></i>&nbsp;Global Stocks</div>
@@ -204,63 +82,6 @@ st.divider()
 
 # Hero Section with modern styling
 st.markdown("""
-<style>
-@keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
-
-.hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    background-size: 200% 200%;
-    animation: gradient-shift 6s ease infinite;
-    padding: 2.5rem;
-    border-radius: 20px;
-    margin-bottom: 2rem;
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    animation: float 4s ease-in-out infinite;
-}
-
-.hero-section h1 {
-    color: white;
-    text-align: center;
-    margin: 0;
-    font-size: 3rem;
-    position: relative;
-    z-index: 1;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-}
-
-.hero-section p {
-    color: white;
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    opacity: 0.95;
-    position: relative;
-    z-index: 1;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-}
-</style>
-
 <div class="hero-section">
     <h1>
         <i class='fa-solid fa-globe'></i> Global Stock Investment Guide
@@ -570,140 +391,8 @@ with cols[0]:
 
 # Card 4: เคล็ดลับและแหล่งความรู้
 with cols[1]:
-    if st.button("� เคล็ดลับและแหล่งความรู้\n\nทรัพยากรและกลยุทธ์ขั้นสูง", key="card_tips", use_container_width=True, type="secondary"):
+    if st.button("💡 เคล็ดลับและแหล่งความรู้\n\nทรัพยากรและกลยุทธ์ขั้นสูง", key="card_tips", use_container_width=True, type="secondary"):
         st.switch_page("pages/4_About_and_Tips.py")
-
-# Add custom CSS for better card styling
-st.markdown("""
-<style>
-/* Style for learning card buttons */
-div[data-testid="column"] button[kind="secondary"] {
-    height: 130px !important;
-    font-size: 1.15rem !important;
-    font-weight: 600 !important;
-    text-align: left !important;
-    padding: 1.8rem !important;
-    border-radius: 16px !important;
-    border: 2px solid transparent !important;
-    color: white !important;
-    position: relative !important;
-    overflow: hidden !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
-}
-
-/* Different gradient for each card */
-div[data-testid="column"]:nth-child(1) button[kind="secondary"] {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-}
-
-div[data-testid="column"]:nth-child(2) button[kind="secondary"] {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
-}
-
-/* Animated gradient background */
-div[data-testid="column"] button[kind="secondary"]::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3)) !important;
-    opacity: 0 !important;
-    transition: opacity 0.4s ease !important;
-}
-
-/* Hover effects */
-div[data-testid="column"] button[kind="secondary"]:hover {
-    transform: translateY(-8px) scale(1.02) !important;
-    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4) !important;
-    border: 2px solid rgba(255,255,255,0.3) !important;
-}
-
-div[data-testid="column"] button[kind="secondary"]:hover::before {
-    opacity: 1 !important;
-}
-
-/* Active/Click effect */
-div[data-testid="column"] button[kind="secondary"]:active {
-    transform: translateY(-4px) scale(0.98) !important;
-    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.3) !important;
-}
-
-/* Text styling */
-div[data-testid="column"] button[kind="secondary"] p {
-    color: white !important;
-    font-size: 0.95rem !important;
-    opacity: 0.95 !important;
-    margin-top: 0.5rem !important;
-    line-height: 1.4 !important;
-}
-
-/* Icon animation on hover */
-div[data-testid="column"] button[kind="secondary"]:hover p:first-child {
-    transform: scale(1.1) !important;
-    transition: transform 0.3s ease !important;
-}
-
-/* Shimmer effect */
-@keyframes shimmer {
-    0% {
-        background-position: -1000px 0;
-    }
-    100% {
-        background-position: 1000px 0;
-    }
-}
-
-div[data-testid="column"] button[kind="secondary"]::after {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: -100% !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-    ) !important;
-    animation: shimmer 3s infinite !important;
-}
-
-/* Pulse animation */
-@keyframes pulse {
-    0%, 100% {
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    50% {
-        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-    }
-}
-
-div[data-testid="column"] button[kind="secondary"] {
-    animation: pulse 3s ease-in-out infinite !important;
-}
-
-/* Glow effect on hover */
-div[data-testid="column"] button[kind="secondary"]:hover {
-    box-shadow: 
-        0 12px 30px rgba(102, 126, 234, 0.4),
-        0 0 30px rgba(102, 126, 234, 0.2),
-        inset 0 0 10px rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-    div[data-testid="column"] button[kind="secondary"] {
-        height: 110px !important;
-        font-size: 1rem !important;
-        padding: 1.2rem !important;
-    }
-}
-</style>
-""", unsafe_allow_html=True)
 
 # Features Section
 st.markdown("---")
@@ -748,81 +437,6 @@ with feature_cols[1]:
 # Popular Stocks Preview
 st.markdown("---")
 st.markdown("<h2><i class='fa-solid fa-fire'></i> หุ้นยอดนิยม</h2>", unsafe_allow_html=True)
-
-st.markdown("""
-<style>
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.stock-card {
-    border: 1px solid #e0e0e0;
-    padding: 1rem;
-    border-radius: 12px;
-    text-align: center;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    animation: fadeInUp 0.6s ease-out;
-    position: relative;
-    overflow: hidden;
-}
-
-.stock-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-    transition: left 0.5s ease;
-}
-
-.stock-card:hover::before {
-    left: 100%;
-}
-
-.stock-card:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
-    border-color: #667eea;
-}
-
-.stock-card h4 {
-    margin: 0;
-    color: #333;
-    font-size: 1.3rem;
-    font-weight: 700;
-}
-
-.stock-card .stock-name {
-    margin: 0.5rem 0;
-    color: #666;
-    font-size: 0.9rem;
-}
-
-.stock-card .stock-price {
-    margin: 0.8rem 0;
-    font-weight: bold;
-    font-size: 1.3rem;
-    color: #2c3e50;
-}
-
-.stock-card .stock-change {
-    margin: 0;
-    font-weight: 600;
-    font-size: 1rem;
-}
-</style>
-""", unsafe_allow_html=True)
 
 pop_cols = st.columns(4)
 popular_stocks = [
