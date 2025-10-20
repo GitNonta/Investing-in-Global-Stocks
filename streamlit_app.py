@@ -497,96 +497,57 @@ learning_cards = [
     }
 ]
 
-# Display learning cards
+# Display learning cards with clickable cards
 cols = st.columns(2)
 
 # Card 1: พื้นฐานการลงทุน
 with cols[0]:
-    st.markdown(f"""
-    <div style="
-        background: #4CAF50; 
-        background: linear-gradient(135deg, #4CAF50dd, #4CAF5099);
-        padding: 1.5rem; 
-        border-radius: 12px; 
-        margin: 0.5rem 0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    ">
-        <h3 style="color: white; margin: 0;">
-            <i class='fa-solid fa-book-open'></i> พื้นฐานการลงทุน
-        </h3>
-        <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">
-            เริ่มต้นด้วยความรู้พื้นฐาน
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    if st.button("📖 เริ่มเรียนรู้", key="learn_basics", use_container_width=True):
+    if st.button("📚 พื้นฐานการลงทุน\n\nเริ่มต้นด้วยความรู้พื้นฐาน", key="card_basics", use_container_width=True, type="secondary"):
         st.switch_page("pages/1_Basics_of_Investment.py")
-
+    
 # Card 2: วิเคราะห์ข้อมูลหุ้น
 with cols[1]:
-    st.markdown(f"""
-    <div style="
-        background: #2196F3; 
-        background: linear-gradient(135deg, #2196F3dd, #2196F399);
-        padding: 1.5rem; 
-        border-radius: 12px; 
-        margin: 0.5rem 0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    ">
-        <h3 style="color: white; margin: 0;">
-            <i class='fa-solid fa-chart-line'></i> วิเคราะห์ข้อมูลหุ้น
-        </h3>
-        <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">
-            เครื่องมือวิเคราะห์แบบเรียลไทม์
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    if st.button("📊 เริ่มวิเคราะห์", key="learn_analysis", use_container_width=True):
+    if st.button("📊 วิเคราะห์ข้อมูลหุ้น\n\nเครื่องมือวิเคราะห์แบบเรียลไทม์", key="card_analysis", use_container_width=True, type="secondary"):
         st.switch_page("pages/2_Stock_Data_Analysis.py")
 
 # Card 3: ความเสี่ยงและค่าเงิน
 with cols[0]:
-    st.markdown(f"""
-    <div style="
-        background: #FF9800; 
-        background: linear-gradient(135deg, #FF9800dd, #FF980099);
-        padding: 1.5rem; 
-        border-radius: 12px; 
-        margin: 0.5rem 0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    ">
-        <h3 style="color: white; margin: 0;">
-            <i class='fa-solid fa-coins'></i> ความเสี่ยงและค่าเงิน
-        </h3>
-        <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">
-            ทำความเข้าใจ Forex Risk
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    if st.button("💱 เรียนรู้ความเสี่ยง", key="learn_forex", use_container_width=True):
+    if st.button("💱 ความเสี่ยงและค่าเงิน\n\nทำความเข้าใจ Forex Risk", key="card_forex", use_container_width=True, type="secondary"):
         st.switch_page("pages/3_Forex_and_Risk.py")
 
 # Card 4: เคล็ดลับและแหล่งความรู้
 with cols[1]:
-    st.markdown(f"""
-    <div style="
-        background: #9C27B0; 
-        background: linear-gradient(135deg, #9C27B0dd, #9C27B099);
-        padding: 1.5rem; 
-        border-radius: 12px; 
-        margin: 0.5rem 0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    ">
-        <h3 style="color: white; margin: 0;">
-            <i class='fa-solid fa-lightbulb'></i> เคล็ดลับและแหล่งความรู้
-        </h3>
-        <p style="color: white; opacity: 0.9; margin: 0.5rem 0 0 0;">
-            ทรัพยากรและกลยุทธ์ขั้นสูง
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    if st.button("💡 ดูเคล็ดลับ", key="learn_tips", use_container_width=True):
+    if st.button("� เคล็ดลับและแหล่งความรู้\n\nทรัพยากรและกลยุทธ์ขั้นสูง", key="card_tips", use_container_width=True, type="secondary"):
         st.switch_page("pages/4_About_and_Tips.py")
+
+# Add custom CSS for better card styling
+st.markdown("""
+<style>
+/* Style for learning card buttons */
+div[data-testid="column"] button[kind="secondary"] {
+    height: 120px !important;
+    font-size: 1.1rem !important;
+    text-align: left !important;
+    padding: 1.5rem !important;
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    color: white !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+div[data-testid="column"] button[kind="secondary"]:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
+}
+
+div[data-testid="column"] button[kind="secondary"] p {
+    color: white !important;
+    font-size: 0.95rem !important;
+    opacity: 0.9 !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # Features Section
 st.markdown("---")
