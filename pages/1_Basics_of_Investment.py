@@ -1,11 +1,20 @@
 ﻿import streamlit as st
+import sys
+import os
+
+# เพิ่ม path สำหรับ import css_loader
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from css_loader import load_all_styles
 
 # Configuration
 st.set_page_config(
     page_title="Investment Basics - Global Stock Guide", 
-    page_icon="", 
+    page_icon="📘", 
     layout="wide"
 )
+
+# Load external CSS
+load_all_styles()
 
 # Add FontAwesome CDN
 st.markdown("""
@@ -20,20 +29,8 @@ menu_icons = {
     "tips": "<i class='fa-solid fa-lightbulb' style='margin-right:6px;'></i>"
 }
 
-# Modern Menu Bar
-st.markdown(f"""
-<style>
-.menu-container {{background: linear-gradient(90deg, #2C3E50 0%, #3498DB 50%, #9B59B6 100%);padding: 0.8rem 0;margin: -1rem -1rem 2rem -1rem;box-shadow: 0 2px 10px rgba(0,0,0,0.1);position: sticky;top: 0;z-index: 999;}}
-.menu-nav {{max-width: 1200px;margin: 0 auto;display: flex;justify-content: space-between;align-items: center;padding: 0 2rem;}}
-.logo {{font-size: 1.5rem;font-weight: bold;color: white;text-decoration: none;}}
-.menu-items {{display: flex;gap: 2rem;align-items: center;}}
-.menu-item {{color: white;text-decoration: none;padding: 0.5rem 1rem;border-radius: 20px;transition: all 0.3s ease;font-weight: 500;font-size: 0.95rem;display: flex;align-items: center;}}
-.menu-item:hover {{background: rgba(255,255,255,0.2);color: white;transform: translateY(-2px);text-decoration: none;}}
-.menu-item.active {{background: rgba(255,255,255,0.3);color: white;}}
-.menu-icon {{margin-right: 0.5rem;}}
-@media (max-width: 768px) {{.menu-nav {{flex-direction: column;padding: 1rem;}}.menu-items {{margin-top: 1rem;flex-wrap: wrap;gap: 1rem;}}}}
-</style>
-
+# Modern Menu Bar (CSS loaded from styles/main.css)
+st.markdown("""
 <div class="menu-container">
     <div class="menu-nav">
         <div class="logo"><i class='fa-solid fa-earth-americas'></i> Global Stocks</div>
@@ -102,44 +99,44 @@ with col2:
 
 with col3:
     st.markdown("""
-    ###  Microsoft (MSFT)
-    - **ประเภท:** ซอฟตแวร
+    ### <i class='fa-brands fa-microsoft'></i> Microsoft (MSFT)
+    - **ประเภท:** ซอฟต์แวร์
     - **ตลาด:** NASDAQ
-    - **ประเทศ:** สหรฐอเมรกา
-    - **จดเดน:** Windows, Azure, AI
-    """)
+    - **ประเทศ:** สหรัฐอเมริกา
+    - **จุดเด่น:** Windows, Azure, AI
+    """, unsafe_allow_html=True)
 
 st.divider()
 
-st.subheader(" ศพททควรร")
+st.markdown("<h2><i class='fa-solid fa-book'></i> ศัพท์ที่ควรรู้</h2>", unsafe_allow_html=True)
 st.markdown("""
-1. **Stock Symbol (รหสหน):** ตวอกษรยอทใชแทนชอบรษท เชน AAPL = Apple  
-2. **Market Price (ราคาตลาด):** ราคาหนลาสดทซอขายกนในตลาด  
-3. **Dividend (เงนปนผล):** เงนทบรษทจายคนใหผถอหน  
-4. **P/E Ratio:** อตราสวนราคาตอกำไร ใชประเมนวาหนแพงหรอถก  
-5. **Market Cap (มลคาตลาด):** มลคารวมของหนทงหมดของบรษท
-6. **Portfolio (พอรตโฟลโอ):** กลมของสนทรพยทลงทนไว
-7. **Broker (โบรกเกอร):** บรษททเปนตวกลางในการซอขายหน
-""")
+1. **<i class='fa-solid fa-tag'></i> Stock Symbol (รหัสหุ้น):** ตัวอักษรย่อที่ใช้แทนชื่อบริษัท เช่น AAPL = Apple  
+2. **<i class='fa-solid fa-money-bill-trend-up'></i> Market Price (ราคาตลาด):** ราคาหุ้นล่าสุดที่ซื้อขายกันในตลาด  
+3. **<i class='fa-solid fa-hand-holding-dollar'></i> Dividend (เงินปันผล):** เงินที่บริษัทจ่ายคืนให้ผู้ถือหุ้น  
+4. **<i class='fa-solid fa-percent'></i> P/E Ratio:** อัตราส่วนราคาต่อกำไร ใช้ประเมินว่าหุ้นแพงหรือถูก  
+5. **<i class='fa-solid fa-building'></i> Market Cap (มูลค่าตลาด):** มูลค่ารวมของหุ้นทั้งหมดของบริษัท
+6. **<i class='fa-solid fa-briefcase'></i> Portfolio (พอร์ตโฟลิโอ):** กลุ่มของสินทรัพย์ที่ลงทุนไว้
+7. **<i class='fa-solid fa-handshake'></i> Broker (โบรกเกอร์):** บริษัทที่เป็นตัวกลางในการซื้อขายหุ้น
+""", unsafe_allow_html=True)
 
 st.divider()
 
-st.subheader(" ขนตอนการเรมลงทน")
+st.markdown("<h2><i class='fa-solid fa-list-ol'></i> ขั้นตอนการเริ่มลงทุน</h2>", unsafe_allow_html=True)
 st.markdown("""
-1. **ศกษาขอมล:** เรยนรเกยวกบตลาดหนและบรษททสนใจ
-2. **เปดบญช:** สมครบญชกบโบรกเกอรทมบรการหนตางประเทศ เชน:
-   - บวหลวง Securities (BUALUANG iFin)
+1. **<i class='fa-solid fa-graduation-cap'></i> ศึกษาข้อมูล:** เรียนรู้เกี่ยวกับตลาดหุ้นและบริษัทที่สนใจ
+2. **<i class='fa-solid fa-user-plus'></i> เปิดบัญชี:** สมัครบัญชีกับโบรกเกอร์ที่มีบริการหุ้นต่างประเทศ เช่น:
+   - ธนาคารกรุงเทพ (Bualuang iFin)
    - KTB Securities (KT ZMICO)
-   - Interactive Brokers (สำหรบเงนทนมาก)
-3. **โอนเงน:** โอนเงนเขาบญชเพอซอหน
-4. **เลอกหน:** เลอกหนทตองการซอ
-5. **ซอขาย:** สงซอหนผานแพลตฟอรมของโบรกเกอร
-6. **ตดตาม:** ตดตามผลการลงทนและขาวสารอยเสมอ
-""")
+   - Interactive Brokers (สำหรับเงินทุนมาก)
+3. **<i class='fa-solid fa-money-bill-transfer'></i> โอนเงิน:** โอนเงินเข้าบัญชีเพื่อซื้อหุ้น
+4. **<i class='fa-solid fa-magnifying-glass-chart'></i> เลือกหุ้น:** เลือกหุ้นที่ต้องการซื้อ
+5. **<i class='fa-solid fa-cart-shopping'></i> ซื้อขาย:** ส่งคำสั่งซื้อหุ้นผ่านแพลตฟอร์มของโบรกเกอร์
+6. **<i class='fa-solid fa-chart-simple'></i> ติดตาม:** ติดตามผลการลงทุนและข่าวสารอยู่เสมอ
+""", unsafe_allow_html=True)
 
 st.divider()
 
-st.subheader(" หลกการกระจายความเสยง (Diversification)")
+st.markdown("<h2><i class='fa-solid fa-shield-halved'></i> หลักการกระจายความเสี่ยง (Diversification)</h2>", unsafe_allow_html=True)
 st.write("""
 อยาลงทนในหนตวเดยว! ควรกระจายเงนลงทนไปในหลายหน หลายประเภทธรกจ และหลายประเทศ
 
