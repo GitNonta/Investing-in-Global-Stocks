@@ -558,14 +558,8 @@ if all_market_data and len(all_market_data) > 0:
     if not YFINANCE_AVAILABLE:
         st.info("<i class='fa-solid fa-lightbulb'></i> รันคำสั่ง: `pip install yfinance` เพื่อดูข้อมูลตลาดแบบเรียลไทม์", icon="💡")
     
-    # Force refresh every 3 seconds
-    st.markdown(f"""
-    <script>
-        setTimeout(function(){{
-            window.parent.location.reload();
-        }}, {slide_interval * 1000});
-    </script>
-    """, unsafe_allow_html=True)
+    # Note: Auto-reload disabled to prevent conflict with slideshow JavaScript
+    # If you want auto-update, use st.rerun() with session state instead
 else:
     st.warning("ไม่สามารถดึงข้อมูลตลาดได้ในขณะนี้")
 
