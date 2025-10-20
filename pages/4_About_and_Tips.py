@@ -9,9 +9,17 @@ from css_loader import load_all_styles
 # Configuration
 st.set_page_config(
     page_title="Tips & Resources - Global Stock Guide", 
-    page_icon="�", 
+    page_icon="💡", 
     layout="wide"
 )
+
+# Load external CSS
+load_all_styles()
+
+# Add FontAwesome CDN
+st.markdown("""
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+""", unsafe_allow_html=True)
 
 menu_icons = {
     "home": "<i class='fa-solid fa-house' style='margin-right:6px;'></i>",
@@ -33,16 +41,16 @@ st.markdown("""
 # Navigation Menu
 col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
-    if st.button("🏠 หน้าหลัก", use_container_width=True):
+    if st.button("⌂ หน้าหลัก", use_container_width=True):
         st.switch_page("streamlit_app.py")
 with col2:
-    if st.button("📘 พื้นฐานการลงทุน", use_container_width=True):
+    if st.button("◉ พื้นฐานการลงทุน", use_container_width=True):
         st.switch_page("pages/1_Basics_of_Investment.py")
 with col3:
-    if st.button("📊 วิเคราะห์หุ้น", use_container_width=True):
+    if st.button("� วิเคราะห์หุ้น", use_container_width=True):
         st.switch_page("pages/2_Stock_Data_Analysis.py")
 with col4:
-    if st.button("💱 ความเสี่ยง", use_container_width=True):
+    if st.button("⚖ ความเสี่ยง", use_container_width=True):
         st.switch_page("pages/3_Forex_and_Risk.py")
 with col5:
     if st.button("💡 เคล็ดลับ", use_container_width=True, type="primary"):

@@ -41,16 +41,16 @@ st.markdown("""
 # Navigation Menu
 col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
-    if st.button("🏠 หน้าหลัก", use_container_width=True):
+    if st.button("⌂ หน้าหลัก", use_container_width=True):
         st.switch_page("streamlit_app.py")
 with col2:
-    if st.button("📘 พื้นฐานการลงทุน", use_container_width=True, type="primary"):
+    if st.button("◉ พื้นฐานการลงทุน", use_container_width=True, type="primary"):
         st.rerun()
 with col3:
-    if st.button("📊 วิเคราะห์หุ้น", use_container_width=True):
+    if st.button("� วิเคราะห์หุ้น", use_container_width=True):
         st.switch_page("pages/2_Stock_Data_Analysis.py")
 with col4:
-    if st.button("💱 ความเสี่ยง", use_container_width=True):
+    if st.button("⚖ ความเสี่ยง", use_container_width=True):
         st.switch_page("pages/3_Forex_and_Risk.py")
 with col5:
     if st.button("💡 เคล็ดลับ", use_container_width=True):
