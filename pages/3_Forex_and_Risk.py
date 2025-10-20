@@ -1,4 +1,10 @@
 import streamlit as st
+import sys
+import os
+
+# เพิ่ม path สำหรับ import css_loader
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from css_loader import load_all_styles
 
 # Configuration
 st.set_page_config(
@@ -7,28 +13,24 @@ st.set_page_config(
     layout="wide"
 )
 
+# Load external CSS
+load_all_styles()
+
+# Add FontAwesome CDN
+st.markdown("""
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+""", unsafe_allow_html=True)
+
 menu_icons = {
-    "home": "<img src='https://cdn-icons-png.flaticon.com/512/1946/1946436.png' width='20' style='vertical-align:middle;margin-right:6px;'>",
-    "basics": "<img src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png' width='20' style='vertical-align:middle;margin-right:6px;'>",
-    "analysis": "<img src='https://cdn-icons-png.flaticon.com/512/2721/2721297.png' width='20' style='vertical-align:middle;margin-right:6px;'>",
-    "forex": "<img src='https://cdn-icons-png.flaticon.com/512/3135/3135706.png' width='20' style='vertical-align:middle;margin-right:6px;'>",
-    "tips": "<img src='https://cdn-icons-png.flaticon.com/512/1828/1828884.png' width='20' style='vertical-align:middle;margin-right:6px;'>"
+    "home": "<i class='fa-solid fa-house' style='margin-right:6px;'></i>",
+    "basics": "<i class='fa-solid fa-book-open' style='margin-right:6px;'></i>",
+    "analysis": "<i class='fa-solid fa-chart-line' style='margin-right:6px;'></i>",
+    "forex": "<i class='fa-solid fa-coins' style='margin-right:6px;'></i>",
+    "tips": "<i class='fa-solid fa-lightbulb' style='margin-right:6px;'></i>"
 }
 
-# Modern Menu Bar
-st.markdown(f"""
-<style>
-.menu-container {{background: linear-gradient(90deg, #2C3E50 0%, #3498DB 50%, #9B59B6 100%);padding: 0.8rem 0;margin: -1rem -1rem 2rem -1rem;box-shadow: 0 2px 10px rgba(0,0,0,0.1);position: sticky;top: 0;z-index: 999;}}
-.menu-nav {{max-width: 1200px;margin: 0 auto;display: flex;justify-content: space-between;align-items: center;padding: 0 2rem;}}
-.logo {{font-size: 1.5rem;font-weight: bold;color: white;text-decoration: none;}}
-.menu-items {{display: flex;gap: 2rem;align-items: center;}}
-.menu-item {{color: white;text-decoration: none;padding: 0.5rem 1rem;border-radius: 20px;transition: all 0.3s ease;font-weight: 500;font-size: 0.95rem;display: flex;align-items: center;}}
-.menu-item:hover {{background: rgba(255,255,255,0.2);color: white;transform: translateY(-2px);text-decoration: none;}}
-.menu-item.active {{background: rgba(255,255,255,0.3);color: white;}}
-.menu-icon {{margin-right: 0.5rem;}}
-@media (max-width: 768px) {{.menu-nav {{flex-direction: column;padding: 1rem;}}.menu-items {{margin-top: 1rem;flex-wrap: wrap;gap: 1rem;}}}}
-</style>
-
+# Modern Menu Bar (CSS loaded from styles/main.css)
+st.markdown("""
 <div class="menu-container">
     <div class="menu-nav">
         <div class="logo"><i class='fa-solid fa-earth-americas'></i> Global Stocks</div>
