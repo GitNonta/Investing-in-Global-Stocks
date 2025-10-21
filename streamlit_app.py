@@ -105,9 +105,9 @@ slideshow_html = """
             </button>
         </div>
         <div class="slide-content">
-            <div class="slide-icon">💎</div>
-            <h2>ยินดีต้อนรับสู่การลงทุนระดับโลก</h2>
-            <p>เริ่มต้นเส้นทางการลงทุนของคุณด้วยเครื่องมือและความรู้ที่ครบครัน</p>
+            <div class="slide-icon">🌟</div>
+            <h2>ยินดีต้อนรับสู่โลกแห่งการลงทุน</h2>
+            <p>เริ่มต้นการเดินทางสู่อิสรภาพทางการเงินด้วยองค์ความรู้และเครื่องมือที่ทันสมัย พร้อมคำแนะนำจากผู้เชี่ยวชาญ</p>
             <div class="slide-features">
                 <div class="feature-item">
                     <i class="fa-solid fa-chart-line"></i>
@@ -115,17 +115,17 @@ slideshow_html = """
                 </div>
                 <div class="feature-item">
                     <i class="fa-solid fa-graduation-cap"></i>
-                    <div>เรียนรู้ฟรี</div>
+                    <div>การศึกษาฟรี</div>
                 </div>
                 <div class="feature-item">
                     <i class="fa-solid fa-shield-halved"></i>
-                    <div>ปลอดภัย</div>
+                    <div>ปลอดภัยและเชื่อถือได้</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Slide 2: Analysis Tools -->
+    <!-- Slide 2: Investment Fundamentals -->
     <div class="slide slide-2">
         <div class="slide-controls">
             <button class="control-btn" onclick="toggleAutoPlay()">
@@ -133,27 +133,27 @@ slideshow_html = """
             </button>
         </div>
         <div class="slide-content">
-            <div class="slide-icon">📊</div>
-            <h2>เครื่องมือวิเคราะห์ที่ทรงพลัง</h2>
-            <p>วิเคราะห์หุ้นด้วย AI และข้อมูลแบบเรียลไทม์จาก Alpha Vantage & Yahoo Finance</p>
+            <div class="slide-icon">�</div>
+            <h2>พื้นฐานการลงทุนที่แข็งแกร่ง</h2>
+            <p>สร้างรากฐานที่มั่นคงด้วยความรู้พื้นฐานที่จำเป็น เข้าใจหลักการ ความเสี่ยง และผลตอบแทนของการลงทุน</p>
             <div class="slide-features">
                 <div class="feature-item">
-                    <i class="fa-solid fa-robot"></i>
-                    <div>AI Analysis</div>
+                    <i class="fa-solid fa-book-open"></i>
+                    <div>หลักการเบื้องต้น</div>
                 </div>
                 <div class="feature-item">
-                    <i class="fa-solid fa-chart-area"></i>
-                    <div>Interactive Charts</div>
+                    <i class="fa-solid fa-balance-scale"></i>
+                    <div>บริหารความเสี่ยง</div>
                 </div>
                 <div class="feature-item">
-                    <i class="fa-solid fa-database"></i>
-                    <div>Real-time Data</div>
+                    <i class="fa-solid fa-target"></i>
+                    <div>การตั้งเป้าหมาย</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Slide 3: Global Markets -->
+    <!-- Slide 3: Advanced Analysis -->
     <div class="slide slide-3">
         <div class="slide-controls">
             <button class="control-btn" onclick="toggleAutoPlay()">
@@ -161,9 +161,37 @@ slideshow_html = """
             </button>
         </div>
         <div class="slide-content">
+            <div class="slide-icon">🔬</div>
+            <h2>วิเคราะห์ข้อมูลด้วย AI และเทคโนโลยี</h2>
+            <p>ใช้เครื่องมือวิเคราะห์ขั้นสูงที่ขับเคลื่อนด้วย AI เพื่อตัดสินใจลงทุนอย่างชาญฉลาดและมีข้อมูลรองรับ</p>
+            <div class="slide-features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-robot"></i>
+                    <div>AI-Powered Analysis</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-chart-area"></i>
+                    <div>กราฟโต้ตอบ</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-database"></i>
+                    <div>Big Data Processing</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Global Opportunities -->
+    <div class="slide slide-4">
+        <div class="slide-controls">
+            <button class="control-btn" onclick="toggleAutoPlay()">
+                <i class="fa-solid fa-pause"></i> <span id="play-text-4">Pause</span>
+            </button>
+        </div>
+        <div class="slide-content">
             <div class="slide-icon">🌍</div>
-            <h2>เข้าถึงตลาดโลก</h2>
-            <p>ลงทุนในหุ้นชั้นนำจาก NYSE, NASDAQ, LSE และตลาดอื่น ๆ ทั่วโลก</p>
+            <h2>เปิดโลกโอกาสการลงทุน</h2>
+            <p>เข้าถึงตลาดหลักทรัพย์ชั้นนำทั่วโลก ไม่ว่าจะเป็น NYSE, NASDAQ, LSE และตลาดเอเชีย ด้วยคลิกเดียว</p>
             <div class="slide-features">
                 <div class="feature-item">
                     <i class="fa-solid fa-building-columns"></i>
@@ -175,41 +203,13 @@ slideshow_html = """
                 </div>
                 <div class="feature-item">
                     <i class="fa-solid fa-yen-sign"></i>
-                    <div>Asian Markets</div>
+                    <div>ตลาดเอเชีย-แปซิฟิก</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Slide 4: Risk Management -->
-    <div class="slide slide-4">
-        <div class="slide-controls">
-            <button class="control-btn" onclick="toggleAutoPlay()">
-                <i class="fa-solid fa-pause"></i> <span id="play-text-4">Pause</span>
-            </button>
-        </div>
-        <div class="slide-content">
-            <div class="slide-icon">🛡️</div>
-            <h2>บริหารความเสี่ยงอย่างมืออาชีพ</h2>
-            <p>เครื่องคำนวณความเสี่ยง Forex และเครื่องมือบริหารพอร์ตโฟลิโอ</p>
-            <div class="slide-features">
-                <div class="feature-item">
-                    <i class="fa-solid fa-calculator"></i>
-                    <div>Risk Calculator</div>
-                </div>
-                <div class="feature-item">
-                    <i class="fa-solid fa-coins"></i>
-                    <div>Forex Analysis</div>
-                </div>
-                <div class="feature-item">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    <div>Portfolio Management</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 5: Learn & Grow -->
+    <!-- Slide 5: Success Journey -->
     <div class="slide slide-5">
         <div class="slide-controls">
             <button class="control-btn" onclick="toggleAutoPlay()">
@@ -218,16 +218,16 @@ slideshow_html = """
         </div>
         <div class="slide-content">
             <div class="slide-icon">🚀</div>
-            <h2>เรียนรู้และเติบโตไปด้วยกัน</h2>
-            <p>บทเรียน เคล็ดลับ และกลยุทธ์จากผู้เชี่ยวชาญเพื่อความสำเร็จของคุณ</p>
+            <h2>เส้นทางสู่ความสำเร็จทางการเงิน</h2>
+            <p>เรียนรู้จากผู้เชี่ยวชาญ ติดตามกลยุทธ์ที่ได้ผล และสร้างพอร์ตโฟลิโอที่เติบโตอย่างยั่งยืน</p>
             <div class="slide-features">
                 <div class="feature-item">
-                    <i class="fa-solid fa-book-open"></i>
-                    <div>Free Courses</div>
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <div>Expert Insights</div>
                 </div>
                 <div class="feature-item">
-                    <i class="fa-solid fa-lightbulb"></i>
-                    <div>Expert Tips</div>
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <div>Portfolio Builder</div>
                 </div>
                 <div class="feature-item">
                     <i class="fa-solid fa-trophy"></i>
@@ -245,6 +245,19 @@ slideshow_html = """
         <i class="fa-solid fa-chevron-right"></i>
     </div>
 
+    <!-- Enhanced Controls Panel -->
+    <div class="slideshow-controls">
+        <button class="control-btn secondary" onclick="toggleFullscreen()" title="เต็มจอ">
+            <i class="fa-solid fa-expand"></i>
+        </button>
+        <button class="control-btn secondary" onclick="changeSpeed()" title="ความเร็ว">
+            <i class="fa-solid fa-gauge"></i> <span id="speed-text">1x</span>
+        </button>
+        <button class="control-btn secondary" onclick="shuffleSlides()" title="สุ่มลำดับ">
+            <i class="fa-solid fa-shuffle"></i>
+        </button>
+    </div>
+
     <!-- Dots Indicator -->
     <div class="slide-dots">
         <span class="dot active" onclick="currentSlide(0)"></span>
@@ -259,6 +272,11 @@ slideshow_html = """
         <div class="slide-progress-bar" id="progress-bar"></div>
     </div>
 
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">5</span>
+    </div>
+
     <!-- Swipe Hint for Mobile -->
     <div class="swipe-hint">
         <i class="fa-solid fa-hand-pointer"></i> ลากเพื่อเปลี่ยนสไลด์
@@ -270,31 +288,53 @@ let slideIndex = 0;
 let autoPlayInterval;
 let isAutoPlaying = true;
 let progressInterval;
+let autoPlaySpeed = 5000; // Default 5 seconds
+let speedModes = [3000, 5000, 8000, 12000]; // Speed options: 3s, 5s, 8s, 12s
+let currentSpeedIndex = 1; // Default to 5s
+let isFullscreen = false;
 
 // Initialize slideshow
 document.addEventListener('DOMContentLoaded', function() {
     showSlide(slideIndex);
     startAutoPlay();
+    updateSlideCounter();
     
-    // Touch/Swipe support
+    // Touch/Swipe support with improved detection
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
     const container = document.querySelector('.slideshow-container');
     
     if (container) {
         container.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
         });
         
         container.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
         });
     }
     
     function handleSwipe() {
-        if (touchEndX < touchStartX - 50) changeSlide(1);
-        if (touchEndX > touchStartX + 50) changeSlide(-1);
+        const deltaX = Math.abs(touchEndX - touchStartX);
+        const deltaY = Math.abs(touchEndY - touchStartY);
+        
+        // Only process horizontal swipes
+        if (deltaX > deltaY && deltaX > 50) {
+            if (touchEndX < touchStartX - 50) changeSlide(1);  // Swipe left - next slide
+            if (touchEndX > touchStartX + 50) changeSlide(-1); // Swipe right - previous slide
+        }
+    }
+    
+    // Fullscreen API support
+    if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled) {
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
     }
 });
 
@@ -305,9 +345,10 @@ function showSlide(n) {
     if (n >= slides.length) { slideIndex = 0; }
     if (n < 0) { slideIndex = slides.length - 1; }
     
-    // Hide all slides
+    // Hide all slides with fade effect
     for (let i = 0; i < slides.length; i++) {
         slides[i].classList.remove('active');
+        slides[i].style.opacity = '0';
     }
     
     // Remove active from all dots
@@ -315,15 +356,18 @@ function showSlide(n) {
         dots[i].classList.remove('active');
     }
     
-    // Show current slide
+    // Show current slide with animation
     if (slides[slideIndex]) {
-        slides[slideIndex].classList.add('active');
+        setTimeout(() => {
+            slides[slideIndex].classList.add('active');
+            slides[slideIndex].style.opacity = '1';
+        }, 100);
     }
     if (dots[slideIndex]) {
         dots[slideIndex].classList.add('active');
     }
     
-    // Reset progress bar
+    updateSlideCounter();
     resetProgress();
 }
 
@@ -350,7 +394,7 @@ function currentSlide(n) {
 }
 
 function startAutoPlay() {
-    const duration = 5000; // 5 seconds per slide
+    const duration = autoPlaySpeed;
     let progress = 0;
     
     // Clear existing intervals
@@ -362,16 +406,16 @@ function startAutoPlay() {
         changeSlide(1);
     }, duration);
     
-    // Progress bar animation
+    // Enhanced progress bar animation
     const progressBar = document.getElementById('progress-bar');
     if (progressBar) {
         progressInterval = setInterval(() => {
-            progress += 100 / (duration / 100);
+            progress += 100 / (duration / 50);
             if (progress >= 100) {
                 progress = 0;
             }
             progressBar.style.width = progress + '%';
-        }, 100);
+        }, 50);
     }
 }
 
@@ -400,7 +444,9 @@ function toggleAutoPlay() {
             if (el) el.textContent = 'Play';
         });
         btns.forEach(btn => {
-            btn.className = 'fa-solid fa-play';
+            if (btn && btn.classList.contains('fa-pause')) {
+                btn.className = 'fa-solid fa-play';
+            }
         });
     } else {
         startAutoPlay();
@@ -411,18 +457,118 @@ function toggleAutoPlay() {
             if (el) el.textContent = 'Pause';
         });
         btns.forEach(btn => {
-            btn.className = 'fa-solid fa-pause';
+            if (btn && btn.classList.contains('fa-play')) {
+                btn.className = 'fa-solid fa-pause';
+            }
         });
     }
 }
 
-// Keyboard navigation
+function updateSlideCounter() {
+    const currentSlideEl = document.getElementById('current-slide');
+    if (currentSlideEl) {
+        currentSlideEl.textContent = slideIndex + 1;
+    }
+}
+
+// New enhanced features
+function toggleFullscreen() {
+    const container = document.querySelector('.slideshow-container');
+    const fullscreenBtn = document.querySelector('.slideshow-controls .fa-expand, .slideshow-controls .fa-compress');
+    
+    if (!isFullscreen) {
+        if (container.requestFullscreen) {
+            container.requestFullscreen();
+        } else if (container.webkitRequestFullscreen) {
+            container.webkitRequestFullscreen();
+        } else if (container.mozRequestFullScreen) {
+            container.mozRequestFullScreen();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        }
+    }
+}
+
+function handleFullscreenChange() {
+    const fullscreenBtn = document.querySelector('.slideshow-controls .fa-expand, .slideshow-controls .fa-compress');
+    isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+    
+    if (fullscreenBtn) {
+        fullscreenBtn.className = isFullscreen ? 'fa-solid fa-compress' : 'fa-solid fa-expand';
+    }
+}
+
+function changeSpeed() {
+    currentSpeedIndex = (currentSpeedIndex + 1) % speedModes.length;
+    autoPlaySpeed = speedModes[currentSpeedIndex];
+    
+    const speedText = document.getElementById('speed-text');
+    const speedLabels = ['0.5x', '1x', '1.5x', '2x'];
+    if (speedText) {
+        speedText.textContent = speedLabels[currentSpeedIndex];
+    }
+    
+    // Restart autoplay with new speed
+    if (isAutoPlaying) {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+    }
+}
+
+function shuffleSlides() {
+    // Simple shuffle - go to random slide
+    const totalSlides = document.getElementsByClassName('slide').length;
+    let randomIndex;
+    do {
+        randomIndex = Math.floor(Math.random() * totalSlides);
+    } while (randomIndex === slideIndex);
+    
+    slideIndex = randomIndex;
+    showSlide(slideIndex);
+    
+    // Restart autoplay
+    if (isAutoPlaying) {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+    }
+}
+
+// Enhanced keyboard navigation
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft') changeSlide(-1);
-    if (e.key === 'ArrowRight') changeSlide(1);
-    if (e.key === ' ') {
-        e.preventDefault();
-        toggleAutoPlay();
+    switch(e.key) {
+        case 'ArrowLeft':
+            changeSlide(-1);
+            break;
+        case 'ArrowRight':
+            changeSlide(1);
+            break;
+        case ' ':
+            e.preventDefault();
+            toggleAutoPlay();
+            break;
+        case 'f':
+        case 'F':
+            toggleFullscreen();
+            break;
+        case 's':
+        case 'S':
+            changeSpeed();
+            break;
+        case 'r':
+        case 'R':
+            shuffleSlides();
+            break;
+        case 'Escape':
+            if (isFullscreen) {
+                toggleFullscreen();
+            }
+            break;
     }
 });
 </script>
