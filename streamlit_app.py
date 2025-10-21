@@ -94,8 +94,235 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Apple-inspired Slideshow
+# Apple-inspired Slideshow with embedded styles
 slideshow_html = """
+<style>
+/* FULL EMBEDDED CSS */
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 32px 64px rgba(0, 0, 0, 0.25), 0 16px 32px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 500px;
+}
+
+.slide {
+    display: none;
+    padding: 4rem 2rem;
+    text-align: center;
+    min-height: 450px;
+    position: relative;
+    color: white;
+}
+
+.slide.active {
+    display: block !important;
+}
+
+.slide-1 { background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%); }
+.slide-2 { background: linear-gradient(135deg, rgba(255, 107, 107, 0.95) 0%, rgba(255, 142, 83, 0.95) 100%); }
+.slide-3 { background: linear-gradient(135deg, rgba(84, 160, 255, 0.95) 0%, rgba(22, 119, 255, 0.95) 100%); }
+.slide-4 { background: linear-gradient(135deg, rgba(126, 87, 194, 0.95) 0%, rgba(98, 54, 255, 0.95) 100%); }
+.slide-5 { background: linear-gradient(135deg, rgba(254, 112, 150, 0.95) 0%, rgba(255, 159, 67, 0.95) 100%); }
+
+.slide-content {
+    max-width: 900px;
+    margin: 0 auto;
+    color: white;
+    position: relative;
+    z-index: 3;
+}
+
+.slide-icon {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.slide h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: white;
+}
+
+.slide p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+    color: white;
+}
+
+.slide-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.feature-item {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    padding: 1.8rem 1.5rem;
+    border-radius: 16px;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.feature-item:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-8px);
+}
+
+.feature-item i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+    color: white;
+}
+
+.feature-item div {
+    color: white;
+    font-weight: 600;
+}
+
+.slide-controls {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 10;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.8rem 1.4rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin: 0 0.25rem;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 1.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    transition: all 0.4s ease;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-arrow:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slide-arrow.prev { left: 1.5rem; }
+.slide-arrow.next { right: 1.5rem; }
+
+.slide-dots {
+    text-align: center;
+    padding: 2rem 0;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.dot {
+    height: 14px;
+    width: 14px;
+    margin: 0 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: white;
+    width: 36px;
+    border-radius: 8px;
+}
+
+.slide-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    width: 100%;
+}
+
+.slide-progress-bar {
+    height: 100%;
+    background: white;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.live-ticker {
+    margin-top: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ticker-content {
+    display: flex;
+    animation: ticker 15s linear infinite;
+    white-space: nowrap;
+}
+
+.ticker-item {
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: white;
+    min-width: 200px;
+    text-align: center;
+}
+
+@keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+</style>
+
 <div class="slideshow-container">
     <!-- Slide 1: Welcome -->
     <div class="slide slide-1 active">
@@ -122,7 +349,6 @@ slideshow_html = """
                     <div>ปลอดภัยและเชื่อถือได้</div>
                 </div>
             </div>
-            <!-- Live Stock Ticker -->
             <div class="live-ticker">
                 <div class="ticker-content">
                     <span class="ticker-item">📈 AAPL: $178.50 (+2.3%)</span>
@@ -130,6 +356,121 @@ slideshow_html = """
                     <span class="ticker-item">🚀 TSLA: $242.80 (+4.2%)</span>
                     <span class="ticker-item">🔥 NVDA: $495.20 (+1.7%)</span>
                     <span class="ticker-item">💎 META: $485.60 (+1.1%)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Investment Fundamentals -->
+    <div class="slide slide-2">
+        <div class="slide-controls">
+            <button class="control-btn" onclick="toggleFullscreen()">
+                <i class="fa-solid fa-expand"></i> เต็มจอ
+            </button>
+        </div>
+        <div class="slide-content">
+            <div class="slide-icon">📚</div>
+            <h2>พื้นฐานการลงทุนที่แข็งแกร่ง</h2>
+            <p>สร้างรากฐานที่มั่นคงด้วยความรู้พื้นฐานที่จำเป็น เข้าใจหลักการ ความเสี่ยง และผลตอบแทนของการลงทุน</p>
+            <div class="slide-features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-book-open"></i>
+                    <div>หลักการเบื้องต้น</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-balance-scale"></i>
+                    <div>บริหารความเสี่ยง</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-target"></i>
+                    <div>การตั้งเป้าหมาย</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Stock Analysis -->
+    <div class="slide slide-3">
+        <div class="slide-controls">
+            <button class="control-btn" onclick="changeSpeed()">
+                <i class="fa-solid fa-gauge-high"></i> <span id="speed-text">ปกติ</span>
+            </button>
+        </div>
+        <div class="slide-content">
+            <div class="slide-icon">📊</div>
+            <h2>วิเคราะห์หุ้นอย่างเป็นระบบ</h2>
+            <p>เครื่องมือและเทคนิคการวิเคราะห์หุ้นที่นักลงทุนมืออาชีพใช้ในการตัดสินใจลงทุน</p>
+            <div class="slide-features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    <div>การวิเคราะห์พื้นฐาน</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-chart-candlestick"></i>
+                    <div>การวิเคราะห์เทคนิค</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-robot"></i>
+                    <div>AI Analysis</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Risk Management -->
+    <div class="slide slide-4">
+        <div class="slide-controls">
+            <button class="control-btn" onclick="shuffleSlides()">
+                <i class="fa-solid fa-shuffle"></i> สุ่ม
+            </button>
+        </div>
+        <div class="slide-content">
+            <div class="slide-icon">🛡️</div>
+            <h2>จัดการความเสี่ยง</h2>
+            <p>เรียนรู้วิธีการป้องกันและจัดการความเสี่ยงในการลงทุน เพื่อรักษาเงินทุนและสร้างผลตอบแทนอย่างยั่งยืน</p>
+            <div class="slide-features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-stop"></i>
+                    <div>Stop Loss</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <div>การจัดสรรเงินทุน</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                    <div>Health Check</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Get Started -->
+    <div class="slide slide-5">
+        <div class="slide-controls">
+            <button class="control-btn" onclick="toggle3DMode()">
+                <i class="fa-solid fa-cube"></i> 3D
+            </button>
+            <button class="control-btn" onclick="toggleTheme()">
+                <i class="fa-solid fa-palette"></i> ธีม
+            </button>
+        </div>
+        <div class="slide-content">
+            <div class="slide-icon">🚀</div>
+            <h2>เริ่มต้นลงทุนวันนี้</h2>
+            <p>ทุกการเดินทางเริ่มต้นด้วยก้าวแรก เริ่มสร้างอนาคตทางการเงินของคุณด้วยข้อมูลและเครื่องมือที่ดีที่สุด</p>
+            <div class="slide-features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    <div>เรียนรู้ต่อไป</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-handshake"></i>
+                    <div>คอมมูนิตี้</div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-trophy"></i>
+                    <div>ความสำเร็จ</div>
                 </div>
             </div>
         </div>
@@ -727,8 +1068,8 @@ document.addEventListener('mouseleave', function() {
 </script>
 """
 
-# Render slideshow using components.html for better HTML handling
-components.html(slideshow_html, height=500)
+# Render slideshow using components.html for better HTML handling  
+components.html(slideshow_html, height=700, scrolling=False)
 
 st.markdown("---")
 
