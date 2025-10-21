@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import datetime
 import requests
 import sys
@@ -94,7 +95,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Apple-inspired Slideshow
-st.markdown("""
+slideshow_html = """
 <div class="slideshow-container">
     <!-- Slide 1: Welcome -->
     <div class="slide slide-1 active">
@@ -280,14 +281,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let touchEndX = 0;
     const container = document.querySelector('.slideshow-container');
     
-    container.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-    
-    container.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
+    if (container) {
+        container.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        container.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+    }
     
     function handleSwipe() {
         if (touchEndX < touchStartX - 50) changeSlide(1);
@@ -313,8 +316,12 @@ function showSlide(n) {
     }
     
     // Show current slide
-    slides[slideIndex].classList.add('active');
-    dots[slideIndex].classList.add('active');
+    if (slides[slideIndex]) {
+        slides[slideIndex].classList.add('active');
+    }
+    if (dots[slideIndex]) {
+        dots[slideIndex].classList.add('active');
+    }
     
     // Reset progress bar
     resetProgress();
@@ -356,17 +363,23 @@ function startAutoPlay() {
     }, duration);
     
     // Progress bar animation
-    progressInterval = setInterval(() => {
-        progress += 100 / (duration / 100);
-        if (progress >= 100) {
-            progress = 0;
-        }
-        document.getElementById('progress-bar').style.width = progress + '%';
-    }, 100);
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+        progressInterval = setInterval(() => {
+            progress += 100 / (duration / 100);
+            if (progress >= 100) {
+                progress = 0;
+            }
+            progressBar.style.width = progress + '%';
+        }, 100);
+    }
 }
 
 function resetProgress() {
-    document.getElementById('progress-bar').style.width = '0%';
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+        progressBar.style.width = '0%';
+    }
 }
 
 function toggleAutoPlay() {
@@ -413,7 +426,10 @@ document.addEventListener('keydown', function(e) {
     }
 });
 </script>
-""", unsafe_allow_html=True)
+"""
+
+# Render slideshow using components.html for better HTML handling
+components.html(slideshow_html, height=500)
 
 st.markdown("---")
 
