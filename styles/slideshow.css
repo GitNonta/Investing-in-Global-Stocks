@@ -16,6 +16,8 @@
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .slideshow-container::before {
@@ -651,6 +653,221 @@
     padding: 0.5rem 1rem;
     border-radius: 20px;
     backdrop-filter: blur(10px);
+}
+
+/* Live Stock Ticker */
+.live-ticker {
+    margin-top: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ticker-content {
+    display: flex;
+    animation: ticker 15s linear infinite;
+    white-space: nowrap;
+}
+
+.ticker-item {
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: white;
+    min-width: 200px;
+    text-align: center;
+}
+
+@keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Interactive Demo Widget */
+.demo-widget {
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.widget-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #FFD700;
+}
+
+.calculator-demo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.calc-input {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    flex: 1;
+    text-align: center;
+}
+
+.amount {
+    font-weight: 700;
+    color: #4CAF50;
+}
+
+.return.positive {
+    color: #4CAF50;
+    font-weight: 700;
+    animation: pulse-green 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+    50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
+}
+
+@keyframes pulse-green {
+    0%, 100% { color: #4CAF50; }
+    50% { color: #66BB6A; }
+}
+
+/* Particle Effect Background */
+.slideshow-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px, 80px 80px;
+    animation: float-particles 20s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes float-particles {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(10px); }
+    100% { transform: translateY(0) translateX(0); }
+}
+
+/* Neon glow effect for special elements */
+.slide-icon {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+    animation: float 4s ease-in-out infinite;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.slide-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+/* Matrix rain effect (subtle) */
+@keyframes matrix-rain {
+    0% { transform: translateY(-100vh); }
+    100% { transform: translateY(100vh); }
+}
+
+.slideshow-container::before {
+    content: '💎💰📈🚀⭐💡🔥⚡🌟💯';
+    position: absolute;
+    top: -100px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    font-size: 20px;
+    opacity: 0.1;
+    animation: matrix-rain 15s linear infinite;
+    letter-spacing: 50px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Pulsing border effect */
+.slideshow-container.active-pulse {
+    animation: border-pulse 2s ease-in-out infinite;
+}
+
+@keyframes border-pulse {
+    0%, 100% { 
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 32px 64px rgba(0, 0, 0, 0.25);
+    }
+    50% { 
+        border-color: rgba(255, 215, 0, 0.5);
+        box-shadow: 0 32px 64px rgba(255, 215, 0, 0.2);
+    }
+}
+
+/* Interactive hover states for controls */
+.slideshow-controls .control-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Slide transition effects */
+.slide.slide-entering {
+    animation: slideEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide.slide-leaving {
+    animation: slideLeave 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideEnter {
+    0% {
+        opacity: 0;
+        transform: translateX(100%) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes slideLeave {
+    0% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-100%) scale(0.8);
+    }
+}
+
+/* Christmas/Special effects (seasonal) */
+.slideshow-container.special-mode {
+    animation: rainbow-border 3s ease-in-out infinite;
+}
+
+@keyframes rainbow-border {
+    0%, 100% { border-color: rgba(255, 0, 0, 0.5); }
+    16% { border-color: rgba(255, 165, 0, 0.5); }
+    33% { border-color: rgba(255, 255, 0, 0.5); }
+    50% { border-color: rgba(0, 255, 0, 0.5); }
+    66% { border-color: rgba(0, 0, 255, 0.5); }
+    83% { border-color: rgba(75, 0, 130, 0.5); }
 }
 
 @keyframes bounce {

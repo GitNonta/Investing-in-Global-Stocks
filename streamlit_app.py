@@ -122,6 +122,16 @@ slideshow_html = """
                     <div>ปลอดภัยและเชื่อถือได้</div>
                 </div>
             </div>
+            <!-- Live Stock Ticker -->
+            <div class="live-ticker">
+                <div class="ticker-content">
+                    <span class="ticker-item">📈 AAPL: $178.50 (+2.3%)</span>
+                    <span class="ticker-item">📊 MSFT: $412.30 (-0.4%)</span>
+                    <span class="ticker-item">🚀 TSLA: $242.80 (+4.2%)</span>
+                    <span class="ticker-item">🔥 NVDA: $495.20 (+1.7%)</span>
+                    <span class="ticker-item">💎 META: $485.60 (+1.1%)</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -256,6 +266,12 @@ slideshow_html = """
         <button class="control-btn secondary" onclick="shuffleSlides()" title="สุ่มลำดับ">
             <i class="fa-solid fa-shuffle"></i>
         </button>
+        <button class="control-btn secondary" onclick="toggle3DMode()" title="โหมด 3D">
+            <i class="fa-solid fa-cube"></i>
+        </button>
+        <button class="control-btn secondary" onclick="toggleTheme()" title="เปลี่ยนธีม">
+            <i class="fa-solid fa-palette"></i>
+        </button>
     </div>
 
     <!-- Dots Indicator -->
@@ -292,6 +308,15 @@ let autoPlaySpeed = 5000; // Default 5 seconds
 let speedModes = [3000, 5000, 8000, 12000]; // Speed options: 3s, 5s, 8s, 12s
 let currentSpeedIndex = 1; // Default to 5s
 let isFullscreen = false;
+let is3DMode = false;
+let currentTheme = 0;
+let themes = [
+    { name: 'Classic', colors: ['#667eea', '#764ba2'] },
+    { name: 'Sunset', colors: ['#ff6b6b', '#ffa500'] },
+    { name: 'Ocean', colors: ['#00c6ff', '#0072ff'] },
+    { name: 'Forest', colors: ['#11998e', '#38ef7d'] },
+    { name: 'Purple', colors: ['#a8edea', '#fed6e3'] }
+];
 
 // Initialize slideshow
 document.addEventListener('DOMContentLoaded', function() {
@@ -564,11 +589,139 @@ document.addEventListener('keydown', function(e) {
         case 'R':
             shuffleSlides();
             break;
+        case 't':
+        case 'T':
+            toggleTheme();
+            break;
+        case '3':
+            toggle3DMode();
+            break;
         case 'Escape':
             if (isFullscreen) {
                 toggleFullscreen();
             }
             break;
+    }
+});
+
+// New exciting functions
+function toggle3DMode() {
+    const container = document.querySelector('.slideshow-container');
+    is3DMode = !is3DMode;
+    
+    if (is3DMode) {
+        container.style.transform = 'perspective(1000px) rotateY(5deg) rotateX(2deg)';
+        container.style.boxShadow = '0 50px 100px rgba(0, 0, 0, 0.5)';
+        
+        // Add 3D effect to slides
+        const slides = document.querySelectorAll('.slide');
+        slides.forEach(slide => {
+            slide.style.transform = 'translateZ(20px)';
+        });
+    } else {
+        container.style.transform = 'none';
+        container.style.boxShadow = '0 32px 64px rgba(0, 0, 0, 0.25)';
+        
+        const slides = document.querySelectorAll('.slide');
+        slides.forEach(slide => {
+            slide.style.transform = 'none';
+        });
+    }
+}
+
+function toggleTheme() {
+    currentTheme = (currentTheme + 1) % themes.length;
+    const theme = themes[currentTheme];
+    
+    // Apply new gradient to all slides
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach((slide, index) => {
+        const color1 = theme.colors[0];
+        const color2 = theme.colors[1];
+        const opacity = 0.9 + (index * 0.02); // Slight variation per slide
+        
+        slide.style.background = `linear-gradient(135deg, ${color1}${Math.floor(opacity * 255).toString(16)} 0%, ${color2}${Math.floor(opacity * 255).toString(16)} 100%)`;
+    });
+    
+    // Update container background
+    const container = document.querySelector('.slideshow-container');
+    container.style.background = `linear-gradient(135deg, ${theme.colors[0]} 0%, ${theme.colors[1]} 100%)`;
+    
+    // Show theme notification
+    showNotification(`ธีม: ${theme.name}`);
+}
+
+function showNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        animation: slideInNotification 0.3s ease-out;
+    `;
+    
+    // Add CSS animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInNotification {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutNotification {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(notification);
+    
+    // Remove notification after 2 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOutNotification 0.3s ease-out';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 2000);
+}
+
+// Mouse parallax effect
+document.addEventListener('mousemove', function(e) {
+    const container = document.querySelector('.slideshow-container');
+    if (!container) return;
+    
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / centerY * 2; // Max 2 degrees
+    const rotateY = (x - centerX) / centerX * 2; // Max 2 degrees
+    
+    if (!is3DMode) {
+        container.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+    }
+});
+
+// Reset parallax when mouse leaves
+document.addEventListener('mouseleave', function() {
+    const container = document.querySelector('.slideshow-container');
+    if (container && !is3DMode) {
+        container.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
     }
 });
 </script>
